@@ -1,1 +1,1 @@
-var posts=["2022/06/10/Windows/批处理/","2022/06/28/Windows/系统密码破解/","2022/06/20/Windows/DOC命令/"];function toRandomPost(){pjax.loadUrl('/'+posts[Math.floor(Math.random() * posts.length)]);};
+var posts=["2022/06/10/Windows/批处理/","2022/06/20/Windows/DOC命令/","2022/06/28/Windows/系统密码破解/"];function toRandomPost(){pjax.loadUrl('/'+posts[Math.floor(Math.random() * posts.length)]);};
