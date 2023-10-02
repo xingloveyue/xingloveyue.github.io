@@ -1,0 +1,840 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>php基础 | cgjil</title><meta name="keywords" content="语言"><meta name="author" content="cgjil"><meta name="copyright" content="cgjil"><meta name="referrer" content="no-referrer"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="php基础"><meta name="application-name" content="php基础"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="php基础"><meta property="og:url" content="http://example.com/2022/10/10/%E7%BC%96%E7%A8%8B/php/index.html"><meta property="og:site_name" content="cgjil"><meta property="og:description" content="初识PHP了解PHP 语⾔  PHP 语⾔标记&amp;lt;h1&amp;gt;My Name is XIU!&amp;lt;&amp;#x2F;h1&amp;gt;&amp;lt;script&amp;gt;console.log(&amp;quot;This message is from info.php!&amp;quot;)&amp;lt;&amp;#x2F;script&amp;gt;&amp;lt;?ph"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="http://example.com/image/1.webp"><meta property="article:author" content="cgjil"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="http://example.com/image/1.webp"><meta name="description" content="初识PHP了解PHP 语⾔  PHP 语⾔标记&amp;lt;h1&amp;gt;My Name is XIU!&amp;lt;&amp;#x2F;h1&amp;gt;&amp;lt;script&amp;gt;console.log(&amp;quot;This message is from info.php!&amp;quot;)&amp;lt;&amp;#x2F;script&amp;gt;&amp;lt;?ph"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="http://example.com/2022/10/10/%E7%BC%96%E7%A8%8B/php/"><link rel="preconnect" href="//npm.elemecdn.com"/><link rel="preconnect" href="//npm.onmicrosoft.cn"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.20/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: {"enable":true,"ck":"3G1uPFWikrp3ggY5","LingQueMonitorID":"3G1uPFWikrp3ggY5"},
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":["🏃 脚踏实地行动派"]},
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    simplehomepage: false,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: cgjil","link":"链接: ","source":"来源: cgjil","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'cgjil',
+  title: 'php基础',
+  postAI: '',
+  pageFillDescription: '初识PHP, PHP 语⾔标记, 基础语法, 指令分隔符, 注释, 空⽩字符, 变量, 变量概述, 变量命名, 变量声明与初始化, 变量释放, 可变变量, 变量类型, bool, int, float, string, 常量, 定义和使⽤, 预定义常量, 运算符, 算术运算符, 字符串运算符, 赋值运算符, ⽐较运算符, 逻辑运算符, 其他运算符, PHP 流程控制, 顺序执⾏, 分⽀执⾏, if 语句, switch 语句, 判断条件, 循环执⾏, while, do while, for, 特殊流程, break, continue, exit初识了解语语标记的开始标记表示从此标记开始进入模式代码的结束标记表示从开始标记到结束标记之间的内容是模式之后的内容依然被解释引擎认为是纯文本字符串说明在件中可以与和混编开始标记表进模式结束标记标识退出模式模式之外的内容会被作为字符输出到浏览器中或对于来说就是纯本字符串安全问题如果是个在线的站能够看到说明存在敏感信息泄露漏洞这个漏洞需要体现在后的渗透测试报告中基础语法指令分隔符分号代表句代码的结束注释单注释该函数会显示配置信息多注释这是多行注释以下语句表示配置信息空字符空符包括空白字符表达空格制表符回车换行这些空字符在中都是关紧要的可以将个语句展开成任意或者紧缩在空格与空的合理运可以增强代码的清晰性与可读性如果运不合理反会对阅读产负担但是不能是空符打断的关键字例如函数名语句名变量名类名法名等等变量变量概述变量在任何语中都处于核地位变量是于临时存储值的容器通过变量名能够访问到变量值变量包含四个部分内容变量名变量值数据类型内存空间脚本语是种弱数据类型语变量或常量的数据类型由程序的上下决定给个变量赋予什么样的值就是什么数据类型变量命名变量名称组成变量名变量名是严格区分写的以下变量是完全不同的变量名由字数字下划线组成并且不能以数字开头也不能包含空字符特殊字符等其他字符天下一统天下变量命名时建议使驼峰式命名法或者下划线命名法做到变量名的名知意中有些标识符是系统定义的也称为关键字是语的组成部分因此不建议使它们中的任何个作为变量名包括函数名类名等建议不要使用变量声明与初始化直接赋值直接使变量释放函数释放指定的变量可变变量可变变量个变量的名字可以动态的设置和使是的特性也是产中变量覆盖漏洞的原因之变量类型变量类型是指保存在该变量中的数据的数据类型在计算机编程语世界中每个数据都有它的类型具有相同类型的数据才能被彼此相互操作在强类型的语中例如语变量要通过声明指定类型然后才可以存储对应指定的数据就好现实活中在制作个柜之前就要决定好这个柜的类型是书柜那么以后就只能来存书是柜以后就只能来存服但是是种弱类型的语和其他语不同的是变量或者常量的数据类型由程序的上下决定不需要事先声明类型个柜要是往存书籍那么他就是书柜要是往存放服那么它就是柜根本不需要事先说明这个是书柜还是柜切根据实际需要使即可可以将数据的变量类型输出使的函数布尔类型这个是最简单的类型布尔型表达了或即真或假进判断的时候如果表达式不是类型的值会有类型转换其他类型的值转换成布尔类型的值多数的值是被认为是少部分以下值被认为是整型存储整数浮点型也称指包含数的数字符串是有序的系列字符字符串可以使单引号双引号定界符三种法来定义单引号定义字符串单引号定义的字符串中不能包含单引号如果包含需要转义单引号中的变量不会被识别运算符在中代表字符串拼接双引号定义字符串双引号中可以包含单引号双引号中包含双引号需要转义会解析双引号之间的变量最好将变量名括起来定界符定义字符串当需要定义输出段字符串时并且该字符串中有超多特殊字符包括单引号双引号等等定界符定义的字符串中的单双引号还有部分特殊字符不需要进转义定界符开始标识符标志标志建议写字并且具备定的语义定界符结束标符标志结束标识符之后只能有换回标志的命名规则字数字下划线并且不能以数字开始定界符中的同样会识别成变量变量名要括起来常量常量是个简单值的标符如其名称所暗的在脚本执期间个常量旦被定义就不能被改变或者取消定义常量的作域是全局常量包含类型的数据定义和使常量的命名与变量类似也遵循标识符的名称规则按照惯例常量标识符总是写的变量般由符号起头常量般写预定义常量已经定义好了可以直接使的常量般代表特殊的含义魔术常量是预定义常量中较特殊的类常量名常量值当前的件名完整的路径当前号当前的函数名当前的类名当前对象的法名操作系统类型当前的版本录的分隔符运算符算术运算符例子名称结果取反的负值加法和的和减法和的差乘法和的积除法除以的商取模取余除以的余数前加的值加然后返回后加返回然后将的值加前减的值减然后返回后减返回然后将的值减算术运算符字符串运算符字符串运算符完成的主要作就是字符串拼接在语中字符串拼接运算符的作是访问对象中的属性或者法中使进字符串拼接中也叫连接运算符字符串连接符赋值运算符左边的操作数必须是变量右边可以是个表达式也可以是个值个变量等等作将右边表达式的值赋给左边变量元赋值运算符赋值运算符较运算符对操作数按照较运算符的要求规则进较后得到返回值如果较出的结果满较运算符的要求那么结果就是真成满否则就是假不成不满例子说明等于全等不等不等不全等小于于于等于于等于比较运算符中规定使输出布尔类型值的时候它在中会输出它会在中什么都不输出建议使来输出更明了的结果逻辑运算符逻辑运算符例解释运算符法则逻辑与运算逻辑或运算逻辑异或运算相同为假不同为真逻辑运算逻辑运算符其他运算符反引号动适配系统命令调系统命令屏蔽表达式可能发的错误流程控制顺序执上下的执即可这也是语句的默认执过程对这个执过程没有控制分执分执可以根据表达式的值是否为来选择执某些代码的分执主要通过和来实现语句语结构判断条件如果判断条件的返回值为则执行语句块否则执行语句块语句块语句块单向条件双向条件语句功能与语句类似当需要多向分结构时并且判断条件是具体的某个值此时多使结构注意表达式的值最好是整形或者字符串不要忘记语句来跳出语句每个语句后都加上如果某个语句后并没有接语句块那么就说明这个语句块的内容是同下后的语句块是不需要括起来的判断条件在编写语句时要求判断条件是个布尔类型的值但是实际应中是法保障这点如果判断条件是布尔类型的值就需要强制转换成布尔类型的值如下循环执计算机最擅的功能之就是按照规定的条件重复执某些操作这是程序设计中最能发挥计算机特的程序结构语结构表达式当表达式的值为真的时候执行循环体循环体当表达式的值为就执下的循环体当循环体执结束之后继续判断表达式的值是还是如果还是那么就继续执循环体直到这个表达式的值为那么这个语句就执结束了例输出到数字语法格式计数器判断条件自增或自减循环体例输出到数字特殊流程于等的中断后可以接上个数字来表跳出层循环默认不加就是跳出当前循环语句只能在循环语句轮空本次循环并不是结束整个循环语句表结束当前整个脚本的执同语句',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-10 09:37:00',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://hbimg.huaban.com/535ad5a8d0a1762fc1cbe65f6e7748d373a8c57d7bfa-l5D3wU_fw658"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">cgjil</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Linux/" style="font-size: 1.05rem;">Linux<sup>3</sup></a><a href="/tags/Windows/" style="font-size: 1.05rem;">Windows<sup>4</sup></a><a href="/tags/%E8%AF%AD%E8%A8%80/" style="font-size: 1.05rem;">语言<sup>2</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/10/"><span class="card-archive-list-date">十月 2022</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/09/"><span class="card-archive-list-date">九月 2022</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/08/"><span class="card-archive-list-date">八月 2022</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/07/"><span class="card-archive-list-date">七月 2022</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/06/"><span class="card-archive-list-date">六月 2022</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item on" id="consoleCommentBarrage" onclick="anzhiyu.switchCommentBarrage()" title="热评开关"><a class="commentBarrage"><i class="anzhiyufont anzhiyu-icon-message"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url">编程</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E8%AF%AD%E8%A8%80/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>语言</span></a></span></div></div><h1 class="post-title" itemprop="name headline">php基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2022-10-10T01:37:00.000Z" title="发表于 2022-10-10 09:37:00">2022-10-10</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2022-10-10T01:37:00.000Z" title="更新于 2022-10-10 09:37:00">2022-10-10</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">3.7k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator"></span><span id="" data-flag-title="php基础"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span class="waline-pageview-count" data-path="/2022/10/10/%E7%BC%96%E7%A8%8B/php/" title="访问量"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator"></span><span class="post-meta-commentcount"><i class="anzhiyufont anzhiyu-icon-comments post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2022/10/10/%E7%BC%96%E7%A8%8B/php/#post-comment"><span class="waline-comment-count" data-path="/2022/10/10/%E7%BC%96%E7%A8%8B/php/"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></a></span></div></div></div><article class="post-content" id="article-container" itemscope itemtype="http://example.com/2022/10/10/%E7%BC%96%E7%A8%8B/php/"><header><a class="post-meta-categories" href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url">编程</a><a href="/tags/%E8%AF%AD%E8%A8%80/" tabindex="-1" itemprop="url">语言</a><h1 id="CrawlerTitle" itemprop="name headline">php基础</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">cgjil</span><time itemprop="dateCreated datePublished" datetime="2022-10-10T01:37:00.000Z" title="发表于 2022-10-10 09:37:00">2022-10-10</time><time itemprop="dateCreated datePublished" datetime="2022-10-10T01:37:00.000Z" title="更新于 2022-10-10 09:37:00">2022-10-10</time></header><h1 id="初识PHP"><a href="#初识PHP" class="headerlink" title="初识PHP"></a>初识PHP</h1><p>了解PHP 语⾔ </p>
+<h2 id="PHP-语⾔标记"><a href="#PHP-语⾔标记" class="headerlink" title="PHP 语⾔标记"></a>PHP 语⾔标记</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;h1&gt;My Name is XIU!&lt;/h1&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">console.<span class="title function_ invoke__">log</span>(<span class="string">&quot;This message is from info.php!&quot;</span>)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"><span class="meta">&lt;?php</span> <span class="comment">// PHP 的开始标记，表示从此标记开始，进入PHP 模式。</span></span><br><span class="line"><span class="title function_ invoke__">phpinfo</span>(); <span class="comment">// PHP 代码</span></span><br><span class="line"><span class="comment">// PHP 的结束标记，表示从开始标记到结束标记，之间的内容是</span></span><br><span class="line">PHP 模式</span><br><span class="line"><span class="comment">// 之后的内容依然被PHP 解释引擎认为是纯文本字符串。</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>说明：</strong></p>
+<p> 在PHP ⽂件中，可以与HTML 和JavaScript 混编。 </p>
+<p>开始标记 <code>&lt;?php</code>  表⽰进⼊PHP 模式，结束标记<code>?&gt;</code>,标识退出PHP 模式。</p>
+<p> PHP 模式之外的内容会被作为字符输出到浏览器中。</p>
+<p> HTML 或JavaScript 对于PHP 来说就是纯⽂本字符串。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$str</span>=<span class="string">&lt;&lt;&lt;HTML</span></span><br><span class="line"><span class="string">&lt;h1&gt;test.php&lt;/h1&gt;</span></span><br><span class="line"><span class="string">&lt;script&gt;</span></span><br><span class="line"><span class="string">console.log(&quot;This message is from test.php!&quot;);</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br><span class="line"><span class="string">HTML</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$str</span>;</span><br></pre></td></tr></table></figure>
+
+<p>安全问题：如果是⼀个在线的⽹站能够看到phpinfo ⻚⾯，说明存在敏感信息泄露漏 洞，这个漏洞需要体现在后⾯的渗透测试报告中。</p>
+<h1 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h1><h3 id="指令分隔符"><a href="#指令分隔符" class="headerlink" title="指令分隔符"></a>指令分隔符</h3><p>分号 <code>;</code> ，代表⼀句PHP 代码的结束。</p>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p><strong>单⾏注释</strong></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">phpinfo</span>(); <span class="comment">// 该函数会显示PHP 配置信息</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>多⾏注释</strong></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">这是多行注释！</span></span><br><span class="line"><span class="comment">以下语句表示PHP 配置信息</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="title function_ invoke__">phpinfo</span>();</span><br></pre></td></tr></table></figure>
+
+<h3 id="空⽩字符"><a href="#空⽩字符" class="headerlink" title="空⽩字符"></a>空⽩字符</h3><p><strong>空⽩符包括：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">空白字符</th>
+<th align="center">表达</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">空格</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">TAB制表符</td>
+<td align="center">\t</td>
+</tr>
+<tr>
+<td align="center">回车换行</td>
+<td align="center">\r\n</td>
+</tr>
+</tbody></table>
+<p>这些空⽩字符在PHP 中都是⽆关紧要的，可以将⼀个语句展开成任意⾏，或者紧缩在 ⼀⾏，空格与空⾏的合理运⽤可以增强代码的清晰性与可读性，如果运⽤不合理反⽽ 会对阅读产⽣负担！ </p>
+<p>但是，不能是⽤空⽩符打断PHP 的关键字，例如函数名，语句名，变量名，类名，⽅ 法名等等。</p>
+<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><h3 id="变量概述"><a href="#变量概述" class="headerlink" title="变量概述"></a>变量概述</h3><p>变量在任何⼀⻔语⾔中都处于核⼼地位。 </p>
+<p>变量是⽤于临时存储值的容器，通过变量名能够访问到变量值，变量包含四个部分内 容：</p>
+<pre><code>     变量名 
+</code></pre>
+<p>​		 变量值 </p>
+<p>​         数据类型 </p>
+<p>​         内存空间</p>
+<p>PHP 脚本语⾔是⼀种弱数据类型语⾔，变量或常量的数据类型由程序的上下⽂决定， 给⼀个变量赋予什么样的值，就是什么数据类型。</p>
+<h3 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h3><p>变量名称组成：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">$ + 变量名</span><br></pre></td></tr></table></figure>
+
+<p>变量名是严格区分⼤⼩写的。以下变量是完全不同的：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$name</span>;</span><br><span class="line"><span class="variable">$Name</span>;</span><br><span class="line"><span class="variable">$NAME</span>;</span><br></pre></td></tr></table></figure>
+
+<p>变量名由字⺟、数字、下划线组成，并且不能以数字开头，也不能包含空⽩字符、特 殊字符等其他字符。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$name</span> = <span class="string">&quot;xiu&quot;</span>;</span><br><span class="line"><span class="variable">$name1</span> = <span class="string">&quot;XIU&quot;</span>;</span><br><span class="line"><span class="variable">$my_name</span> = <span class="string">&quot;天下&quot;</span>;</span><br><span class="line"><span class="variable">$_name</span> = <span class="string">&quot;一统天下&quot;</span>;</span><br><span class="line"><span class="comment">//$1name;</span></span><br><span class="line"><span class="comment">//$n@me;</span></span><br><span class="line"><span class="comment">//$nam$;</span></span><br></pre></td></tr></table></figure>
+
+<p>变量命名时，建议使⽤驼峰式命名法或者下划线命名法，做到变量名的”⻅名知意”。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$firstName</span>;</span><br><span class="line"><span class="variable">$LastName</span>;</span><br><span class="line"><span class="variable">$first_name</span>;</span><br><span class="line"><span class="variable">$last_name</span>;</span><br></pre></td></tr></table></figure>
+
+<p>PHP 中有⼀些标识符是系统定义的，也称为关键字，是PHP 语⾔的组成部分，因此不 建议使⽤它们中的任何⼀个作为变量名，包括函数名，类名等。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$echo</span>; <span class="comment">//建议不要使用</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="变量声明与初始化"><a href="#变量声明与初始化" class="headerlink" title="变量声明与初始化"></a>变量声明与初始化</h3><p>直接赋值，直接使⽤。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="variable">$username</span>; <span class="comment">// Notice: Undefined variable: username</span></span><br><span class="line"><span class="variable">$username</span> = <span class="string">&quot;XIU&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$username</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="变量释放"><a href="#变量释放" class="headerlink" title="变量释放"></a>变量释放</h3><p>unset() 函数释放指定的变量。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$username</span> = <span class="string">&quot;XIU&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$username</span>;</span><br><span class="line"><span class="keyword">unset</span>(<span class="variable">$username</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$username</span>; <span class="comment">//Notice: Undefined variable: username</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="可变变量"><a href="#可变变量" class="headerlink" title="可变变量"></a>可变变量</h3><p>可变变量，⼀个变量的名字可以动态的设置和使⽤。 <code>$$</code> 是php 的特性，也是产⽣ php 中变量覆盖漏洞的原因之⼀。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// $$.php</span></span><br><span class="line"><span class="variable">$username</span> = <span class="string">&quot;XIU&quot;</span>;</span><br><span class="line"><span class="variable">$XIU</span> = <span class="string">&quot;I am from China!&quot;</span>;</span><br><span class="line"><span class="comment">// echo $username; // XIU</span></span><br><span class="line"><span class="comment">// echo $XIU; // I am from China!</span></span><br><span class="line"><span class="comment">// echo $$username; // I am from China! $($username) -&gt; $XIU</span></span><br><span class="line"><span class="variable">$$username</span> = <span class="string">&quot;i love php!&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$XIU</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h3><p>变量类型是指保存在该变量中的数据的数据类型，在计算机编程语⾔世界中每个数据 都有它的类型。 </p>
+<p>具有相同类型的数据才能被彼此相互操作。 </p>
+<p>在强类型的语⾔中例如C 语⾔，变量要通过声明指定类型，然后才可以存储对应指定 的数据，就好⽐现实⽣活中在制作⼀个柜⼦之前，就要决定好这个柜⼦的类型，是书 柜那么以后就只能⽤来存书，是⾐柜以后就只能⽤来存⾐服。 </p>
+<p>但是PHP 是⼀种弱类型的语⾔，和其他语⾔不同的是，变量或者常量的数据类型由程 序的上下⽂决定，不需要事先声明类型。⼀个柜⼦，要是往⾥⾯存书籍那么他就是书 柜；要是往⾥⾯存放⾐服，那么它就是⾐柜，根本不需要事先说明这个是书柜还是⾐ 柜，⼀切根据实际需要使⽤即可。</p>
+<p> 可以将数据的变量类型输出，使⽤的函数var_dump()。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// var_dump.php</span></span><br><span class="line"><span class="variable">$name</span> = <span class="string">&quot;XIU&quot;</span>; <span class="comment">// string</span></span><br><span class="line"><span class="variable">$sex</span> = <span class="literal">true</span>; <span class="comment">// bool</span></span><br><span class="line"><span class="variable">$age</span> = <span class="number">24</span>; <span class="comment">// int</span></span><br><span class="line"><span class="variable">$score</span> = <span class="number">59.9</span>; <span class="comment">// float</span></span><br><span class="line"><span class="comment">// echo $name;</span></span><br><span class="line"><span class="comment">// echo $sex; // 1</span></span><br><span class="line"><span class="comment">// var_dump($sex);</span></span><br><span class="line"><span class="comment">// var_dump($score);</span></span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="variable">$name</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="bool"><a href="#bool" class="headerlink" title="bool"></a>bool</h3><p>布尔类型，这个是最简单的类型，布尔型表达了true 或false，即真或假。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// bool.php</span></span><br><span class="line"><span class="variable">$a</span> = <span class="literal">true</span>;</span><br><span class="line"><span class="variable">$b</span> = <span class="literal">false</span>;</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="variable">$b</span>);</span><br></pre></td></tr></table></figure>
+
+<p>进⾏if 判断的时候，如果表达式不是bool 类型的值，会有类型转换，其他类型的值转 换成布尔类型的值。⼤多数的值是被认为是true，少部分以下值被认为是false。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">bool</span>(<span class="literal">false</span>)</span><br><span class="line"><span class="keyword">int</span>(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">float</span>(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">string</span>(<span class="number">0</span>)<span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">string</span>(<span class="number">1</span>)<span class="string">&quot;0&quot;</span></span><br><span class="line"><span class="keyword">array</span>(<span class="number">0</span>)&#123;&#125;</span><br><span class="line"><span class="literal">NULL</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="int"><a href="#int" class="headerlink" title="int"></a>int</h3><p>整型，存储整数。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$age</span> = <span class="number">24</span>;</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="variable">$age</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="float"><a href="#float" class="headerlink" title="float"></a>float</h3><p>浮点型，也称double，指包含⼩数的数。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$score</span> = <span class="number">99.9</span>;</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="variable">$score</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><p>字符串是有序的⼀系列字符。字符串可以使⽤单引号、双引号、定界符三种⽅法来定 义。 </p>
+<p>单引号定义字符串： 单引号定义的字符串中不能包含单引号，如果包含，需要转义<code>\&#39;</code> 。 单引号中的变量不会被识别。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// string.php</span></span><br><span class="line"><span class="variable">$name</span> = <span class="string">&#x27;XIU&#x27;</span>;</span><br><span class="line"><span class="variable">$msg</span> = <span class="string">&#x27;Welcome, &#x27;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$msg</span>.<span class="variable">$name</span>; <span class="comment">// . 运算符，在PHP 中代表字符串拼接。</span></span><br></pre></td></tr></table></figure>
+
+<p>双引号定义字符串： 双引号中可以包含单引号，双引号中包含双引号，需要转义 <code>\&quot;</code> 。 PHP 会解析双引号之间的变量，最好⽤ <code>&#123;&#125;</code> 将变量名括起来。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// string.php</span></span><br><span class="line"><span class="variable">$username</span> = <span class="string">&quot;XIU&quot;</span>;</span><br><span class="line"><span class="variable">$message</span> = <span class="string">&quot;Welcome, <span class="subst">&#123;$username&#125;</span>&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$message</span>;</span><br></pre></td></tr></table></figure>
+
+<p>定界符定义字符串：当需要定义输出⼤段字符串时，并且该字符串中有超多特殊字符，包括单引号，双引号等 等。 定界符定义的字符串中的单双引号，还有⼤部分特殊字符不需要进⾏转义。 定界符开始标识符 <code>&lt;&lt;&lt; + 标志</code> ，标志建议⼤写字⺟，并且具备⼀定的语义。 定界符结束标⽰符 <code>标志 + ;</code> ，结束标识符之后，只能有换⾏回⻋。 标志的命名规则，字⺟、数字、下划线，并且不能以数字开始。 定界符中的 <code>$</code> 同样会识别成变量，变量名要⽤ <code>&#123;&#125;</code> 括起来。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// string.php</span></span><br><span class="line"><span class="variable">$name</span> = <span class="string">&quot;XIU&quot;</span>;</span><br><span class="line"><span class="variable">$msg</span> = <span class="string">&lt;&lt;&lt;XIU</span></span><br><span class="line"><span class="string">&lt;h1&gt;My Name is &lt;span style = &quot;color:pink&quot;&gt;<span class="subst">&#123;$name&#125;</span>&lt;/span&gt;!&lt;/h1&gt;</span></span><br><span class="line"><span class="string">&lt;script&gt;</span></span><br><span class="line"><span class="string">console.log(&#x27;This message is from info.php!&#x27;)</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br><span class="line"><span class="string">XIU</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$msg</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h1><p>常量是⼀个简单值的标⽰符，如其名称所暗⽰的。在PHP 脚本执⾏期间⼀个常量⼀旦 被定义，就不能被改变或者取消定义，常量的作⽤域是全局，常量包含bool，int， float，string 类型的数据。</p>
+<h3 id="定义和使⽤"><a href="#定义和使⽤" class="headerlink" title="定义和使⽤"></a>定义和使⽤</h3><p>常量的命名与变量类似，也遵循PHP 标识符的名称规则，按照惯例常量标识符总是⼤ 写的。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// define.php</span></span><br><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">&quot;USERNAME&quot;</span>, <span class="string">&quot;XIU&quot;</span>);</span><br><span class="line"><span class="comment">// USERNAME = &#x27;XIU&#x27;;</span></span><br><span class="line"><span class="comment">// unset(&quot;USERNAME&quot;);</span></span><br><span class="line"><span class="keyword">echo</span> USERNAME;</span><br></pre></td></tr></table></figure>
+
+<p>变量⼀般由$ 符号起头，常量⼀般⼤写。</p>
+<h3 id="预定义常量"><a href="#预定义常量" class="headerlink" title="预定义常量"></a>预定义常量</h3><p>PHP 已经定义好了，可以直接使⽤的常量，⼀般代表特殊的含义。魔术常量是预定义 常量中⽐较特殊的⼀类。</p>
+<table>
+<thead>
+<tr>
+<th align="center">常量名</th>
+<th align="center">常量值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">FILE</td>
+<td align="center">当前的⽂件名，完整的路径。</td>
+</tr>
+<tr>
+<td align="center">LINE</td>
+<td align="center">当前⾏号</td>
+</tr>
+<tr>
+<td align="center">FUNCTION</td>
+<td align="center">当前的函数名</td>
+</tr>
+<tr>
+<td align="center">CLASS</td>
+<td align="center">当前的类名</td>
+</tr>
+<tr>
+<td align="center">METHOD</td>
+<td align="center">当前对象的⽅法名</td>
+</tr>
+<tr>
+<td align="center">PHP_OS</td>
+<td align="center">操作系统类型</td>
+</tr>
+<tr>
+<td align="center">PHP_VERSION</td>
+<td align="center">当前PHP 的版本</td>
+</tr>
+<tr>
+<td align="center">DIRECTORY_SEPARATOR</td>
+<td align="center">⽬录的分隔符</td>
+</tr>
+</tbody></table>
+<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><h3 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3><table>
+<thead>
+<tr>
+<th align="center">例子</th>
+<th align="center">名称</th>
+<th align="center">结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-$a</td>
+<td align="center">取反</td>
+<td align="center">$a 的负值</td>
+</tr>
+<tr>
+<td align="center">$a + $b</td>
+<td align="center">加法</td>
+<td align="center">$a和$b 的和</td>
+</tr>
+<tr>
+<td align="center">$a - $b</td>
+<td align="center">减法</td>
+<td align="center">$a 和$b 的差</td>
+</tr>
+<tr>
+<td align="center">$a * $b</td>
+<td align="center">乘法</td>
+<td align="center">$a 和$b 的积</td>
+</tr>
+<tr>
+<td align="center">$a &#x2F; $b</td>
+<td align="center">除法</td>
+<td align="center">$a 除以$b 的商</td>
+</tr>
+<tr>
+<td align="center">$a % $b</td>
+<td align="center">取模，取余</td>
+<td align="center">$a 除以$b 的余数</td>
+</tr>
+<tr>
+<td align="center">++ $a</td>
+<td align="center">前加</td>
+<td align="center">$a 的值加⼀，然后返回$</td>
+</tr>
+<tr>
+<td align="center">$a++</td>
+<td align="center">后加</td>
+<td align="center">返回$a，然后将$a 的值加⼀</td>
+</tr>
+<tr>
+<td align="center">–$a</td>
+<td align="center">前减</td>
+<td align="center">$a 的值减⼀， 然后返回$a</td>
+</tr>
+<tr>
+<td align="center">$a–</td>
+<td align="center">后减</td>
+<td align="center">返回$a，然后将$a 的值减⼀</td>
+</tr>
+</tbody></table>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;meta charset = <span class="string">&quot;utf-8&quot;</span>&gt;</span><br><span class="line">&lt;h1&gt;算术运算符&lt;/h1&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span> = <span class="number">10</span>;</span><br><span class="line"><span class="variable">$b</span> = <span class="number">3</span>;</span><br><span class="line"><span class="comment">// echo -$a;</span></span><br><span class="line"><span class="comment">// echo $a + $b;</span></span><br><span class="line"><span class="comment">// echo $a - $b;</span></span><br><span class="line"><span class="comment">// echo $a * $b;</span></span><br><span class="line"><span class="comment">// echo $a / $b;</span></span><br><span class="line"><span class="comment">// echo $a % $b;</span></span><br><span class="line"><span class="comment">// echo ++ $a;</span></span><br><span class="line"><span class="comment">// echo $a ++;</span></span><br><span class="line"><span class="comment">// echo -- $a;</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>--;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="字符串运算符"><a href="#字符串运算符" class="headerlink" title="字符串运算符"></a>字符串运算符</h3><p>字符串运算符完成的主要⼯作，就是字符串拼接。 在JS 语⾔中，字符串拼接⽤+，运算符. 的作⽤是访问对象中的属性或者⽅法。 PHP 中，使⽤ <code>.</code> 进⾏字符串拼接。PHP 中 <code>.</code> 也叫连接运算符。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;meta charset = <span class="string">&quot;utf-8&quot;</span>&gt;</span><br><span class="line">&lt;h1&gt;字符串连接符&lt;/h1&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$name</span> = <span class="string">&quot;XIU&quot;</span>;</span><br><span class="line"><span class="variable">$str</span> = <span class="string">&quot;Hello,&quot;</span>.<span class="variable">$name</span>;</span><br><span class="line"><span class="comment">//$str = &quot;Hello,&quot;+$name;</span></span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="variable">$str</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h3><p>左边的操作数必须是变量，右边可以是⼀个表达式，也可以是⼀个值，⼀个变量等 等。 </p>
+<p>作⽤：将右边表达式的值赋给左边变量。</p>
+<blockquote>
+<p><strong>⼆元赋值运算符</strong>:</p>
+<p>&#x3D;</p>
+<p>+&#x3D;</p>
+<p>-&#x3D;</p>
+<p>*&#x3D;</p>
+<p>&#x2F;&#x3D;</p>
+<p>%&#x3D;</p>
+<p>.&#x3D;</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;meta charset = <span class="string">&quot;utf-8&quot;</span>&gt;</span><br><span class="line">&lt;h1&gt;赋值运算符&lt;/h1&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span> = <span class="number">10</span>;</span><br><span class="line"><span class="variable">$b</span> = <span class="number">3</span>;</span><br><span class="line"><span class="comment">// $a += $b;</span></span><br><span class="line"><span class="comment">// $a -= $b;</span></span><br><span class="line"><span class="comment">// $a *= $b;</span></span><br><span class="line"><span class="comment">// $a /= $b;</span></span><br><span class="line"><span class="comment">// $a %= $b;</span></span><br><span class="line"><span class="variable">$a</span> .= <span class="variable">$b</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="⽐较运算符"><a href="#⽐较运算符" class="headerlink" title="⽐较运算符"></a>⽐较运算符</h3><p>对操作数（按照⽐较运算符的要求,规则）进⾏⽐较后，得到返回值（boolean）。 </p>
+<p>如果⽐较出的结果满⾜⽐较运算符的要求那么结果就是true（真，成⽴，满⾜），否 则就是false （假，不成⽴，不满⾜）。</p>
+<table>
+<thead>
+<tr>
+<th align="center">例子</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$a &#x3D;&#x3D; $b</td>
+<td align="center">等于</td>
+</tr>
+<tr>
+<td align="center">$a &#x3D;&#x3D;&#x3D; $b</td>
+<td align="center">全等</td>
+</tr>
+<tr>
+<td align="center">$a !&#x3D; $b</td>
+<td align="center">不等</td>
+</tr>
+<tr>
+<td align="center">$a &lt;&gt; $b</td>
+<td align="center">不等</td>
+</tr>
+<tr>
+<td align="center">$a !&#x3D;&#x3D; $b</td>
+<td align="center">不全等</td>
+</tr>
+<tr>
+<td align="center">$a &lt; $b</td>
+<td align="center">小于</td>
+</tr>
+<tr>
+<td align="center">$a &gt; $b</td>
+<td align="center">⼤于</td>
+</tr>
+<tr>
+<td align="center">$a &lt;&#x3D; $b</td>
+<td align="center">⼩于等于</td>
+</tr>
+<tr>
+<td align="center">$a &gt;&#x3D; $b</td>
+<td align="center">⼤于等于</td>
+</tr>
+</tbody></table>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;meta charset = <span class="string">&quot;utf-8&quot;</span>&gt;</span><br><span class="line">&lt;h1&gt;比较运算符&lt;/h1&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span> = <span class="number">5</span>;</span><br><span class="line"><span class="variable">$b</span> = <span class="number">3</span>;</span><br><span class="line"><span class="variable">$c</span> = <span class="variable">$a</span> == <span class="variable">$b</span>;</span><br><span class="line"><span class="variable">$c</span> = <span class="variable">$a</span> === <span class="variable">$b</span>;</span><br><span class="line"><span class="variable">$c</span> = <span class="variable">$a</span> != <span class="variable">$b</span>;</span><br><span class="line"><span class="variable">$c</span> = <span class="variable">$a</span> &lt;&gt; <span class="variable">$b</span>;</span><br><span class="line"><span class="variable">$c</span> = <span class="variable">$a</span> !== <span class="variable">$b</span>;</span><br><span class="line"><span class="variable">$c</span> = <span class="variable">$a</span> &gt; <span class="variable">$b</span>;</span><br><span class="line"><span class="variable">$c</span> = <span class="variable">$a</span> &gt;= <span class="variable">$b</span>;</span><br><span class="line"><span class="variable">$c</span> = <span class="variable">$a</span> &lt; <span class="variable">$b</span>;</span><br><span class="line"><span class="variable">$c</span> = <span class="variable">$a</span> &lt;= <span class="variable">$b</span>;</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="variable">$c</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>PHP 中规定：使⽤echo 输出布尔类型值的时候 <code>echo true</code> ; 它在⻚⾯中会输出 1。 <code>echo false</code> ; 它会在⻚⾯中什么都不输出。建议使⽤var_dump() 来输出更明 了的结果。</p>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><table>
+<thead>
+<tr>
+<th align="center">逻辑运算符</th>
+<th align="center">例⼦</th>
+<th align="center">解释</th>
+<th>运算符法则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">and &amp;&amp;</td>
+<td align="center">$a and $b $a &amp;&amp; $b</td>
+<td align="center">逻辑”与”运算</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">or ||</td>
+<td align="center">$a or $b $a || $b</td>
+<td align="center">逻辑”或”运算</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">xor</td>
+<td align="center">$a xor $b</td>
+<td align="center">逻辑”异或”运算</td>
+<td>相同为假，不同为真。</td>
+</tr>
+<tr>
+<td align="center">!</td>
+<td align="center">!$a</td>
+<td align="center">逻辑”⾮”运算</td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;meta charset = <span class="string">&quot;utf-8&quot;</span>&gt;</span><br><span class="line">&lt;h1&gt;逻辑运算符&lt;/h1&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span> = <span class="literal">true</span>;</span><br><span class="line"><span class="variable">$b</span> = <span class="literal">false</span>;</span><br><span class="line"><span class="comment">//var_dump($a);</span></span><br><span class="line"><span class="comment">//var_dump($b);</span></span><br><span class="line"><span class="variable">$c</span> = (<span class="variable">$a</span> <span class="keyword">and</span> <span class="variable">$b</span>);</span><br><span class="line"><span class="variable">$c</span> = (<span class="variable">$a</span> &amp;&amp; <span class="variable">$b</span>);</span><br><span class="line"><span class="variable">$c</span> = (<span class="variable">$a</span> <span class="keyword">or</span> <span class="variable">$b</span>);</span><br><span class="line"><span class="variable">$c</span> = (<span class="variable">$a</span> || <span class="variable">$b</span>);</span><br><span class="line"><span class="variable">$c</span> = (<span class="variable">$a</span> <span class="keyword">xor</span> <span class="variable">$b</span>);</span><br><span class="line"><span class="variable">$c</span> = !<span class="variable">$a</span>;</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="variable">$c</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="其他运算符"><a href="#其他运算符" class="headerlink" title="其他运算符"></a>其他运算符</h3><p><strong>?:</strong> </p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$a</span> = <span class="number">10</span>;</span><br><span class="line"><span class="variable">$b</span> = <span class="number">20</span>;</span><br><span class="line"><span class="variable">$max</span> = <span class="variable">$a</span> &gt; <span class="variable">$b</span> ? <span class="variable">$a</span> : <span class="variable">$b</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$max</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>反引号</strong></p>
+<p>​		⾃动适配系统命令，调⽤系统命令。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ``.php</span></span><br><span class="line"><span class="variable">$cmd</span> = <span class="string">&quot;whoami&quot;</span>;</span><br><span class="line"><span class="variable">$cmd</span> = <span class="string">&quot;ipconfig&quot;</span>;</span><br><span class="line"><span class="variable">$cmd</span> = <span class="string">&quot;net user&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;pre&gt;&quot;</span>.`<span class="variable">$cmd</span>`;</span><br></pre></td></tr></table></figure>
+
+<p><strong>@</strong></p>
+<p>​		屏蔽表达式可能发⽣的错误。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">echo</span> @<span class="variable">$username</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="PHP-流程控制"><a href="#PHP-流程控制" class="headerlink" title="PHP 流程控制"></a>PHP 流程控制</h1><h3 id="顺序执⾏"><a href="#顺序执⾏" class="headerlink" title="顺序执⾏"></a>顺序执⾏</h3><p>⾃上⽽下的执⾏即可，这也是PHP 语句的默认执⾏过程。对这个执⾏过程没有控制。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="string">&quot;This is first echo&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;br /&gt;&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;This is second echo&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;br /&gt;&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;This is third echo&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="分⽀执⾏"><a href="#分⽀执⾏" class="headerlink" title="分⽀执⾏"></a>分⽀执⾏</h3><p>分⽀执⾏可以根据表达式的值是否为True 来选择执⾏某些代码，PHP 的分⽀执⾏主 要通过if 和switch 来实现。</p>
+<h3 id="if-语句"><a href="#if-语句" class="headerlink" title="if 语句"></a>if 语句</h3><p><strong>语⾔结构</strong></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>()&#123;<span class="comment">//判断条件，如果判断条件的返回值为True，则执行语句块1，否则执行语句块2</span></span><br><span class="line"><span class="comment">//语句块1</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"><span class="comment">//语句块2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>单向条件：</strong></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// if.php</span></span><br><span class="line"><span class="variable">$score</span> = <span class="number">59.9</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$score</span> &gt;= <span class="number">60</span> )&#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;congratulations&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>双向条件：</strong></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// if.php</span></span><br><span class="line"><span class="variable">$score</span> = <span class="number">99.9</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$score</span> &gt;= <span class="number">60</span> )&#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;congratulations&quot;</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Sorry, you may need help!&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="switch-语句"><a href="#switch-语句" class="headerlink" title="switch 语句"></a>switch 语句</h3><p>功能与if 语句类似，当需要多向分⽀结构时，并且判断条件是具体的某个值，此时⼤ 多使⽤switch 结构。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$day</span> = <span class="number">7</span>;</span><br><span class="line"><span class="keyword">switch</span>(<span class="variable">$day</span>)&#123;</span><br><span class="line"><span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Monday&quot;</span>;</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">2</span> :</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Tuesday&quot;</span>;</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">3</span> :</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Wednesday&quot;</span>;</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">4</span> :</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Thursday&quot;</span>;</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Friday&quot;</span>;</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Saturday!&quot;</span>;</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">7</span>:</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Sunday!&quot;</span>;</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Error!&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">?</span><br></pre></td></tr></table></figure>
+
+<p>注意： 表达式的值最好是整形或者字符串。 不要忘记break 语句，⽤来跳出switch 语句。每个case 语句后⾯都加上break。 如果某个case 语句后⾯并没有接语句块，那么就说明这个语句块的内容是同下。 case 后⾯的语句块是不需要 <code>&#123;&#125;</code> 括起来的。</p>
+<h3 id="判断条件"><a href="#判断条件" class="headerlink" title="判断条件"></a>判断条件</h3><p>在编写if 语句时，要求判断条件是⼀个布尔类型的值。但是实际应⽤中，是⽆法保障 这⼀点。如果判断条件是⾮布尔类型的值，就需要强制转换成布尔类型的值。如下：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// if.php</span></span><br><span class="line"><span class="variable">$flag</span> = <span class="number">0</span>;</span><br><span class="line"><span class="variable">$flag</span> = <span class="number">0.0</span>;</span><br><span class="line"><span class="variable">$flag</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="variable">$flag</span> = <span class="string">&quot;0&quot;</span>;</span><br><span class="line"><span class="variable">$flag</span> = <span class="keyword">array</span>();</span><br><span class="line"><span class="variable">$flag</span> = <span class="literal">NULL</span>;</span><br><span class="line"><span class="variable">$flag</span> = <span class="string">&quot;XIU&quot;</span>;</span><br><span class="line"><span class="variable">$flag</span> = <span class="literal">true</span>;</span><br><span class="line"><span class="variable">$flag</span> = <span class="number">24</span>;</span><br><span class="line"><span class="variable">$flag</span> = <span class="number">59.9</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$flag</span>)&#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">var_dump</span>(<span class="variable">$flag</span>).<span class="string">&quot; means Ture&quot;</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">var_dump</span>(<span class="variable">$flag</span>).<span class="string">&quot; means False&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="循环执⾏"><a href="#循环执⾏" class="headerlink" title="循环执⾏"></a>循环执⾏</h1><p>计算机最擅⻓的功能之⼀就是按照规定的条件，重复执⾏某些操作，这是程序设计中 最能发挥计算机特⻓的程序结构。</p>
+<h3 id="while"><a href="#while" class="headerlink" title="while"></a>while</h3><p><strong>语⾔结构</strong></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>(表达式)&#123;<span class="comment">//当表达式的值为真的时候，执行循环体。</span></span><br><span class="line"><span class="comment">//循环体</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>当表达式的值为true，就执⾏下⾯的循环体。当循环体执⾏结束之后，继续判断表达 式的值是true 还是false，如果还是true，那么就继续执⾏循环体。直到，这个表达式 的值为false，那么这个while 语句就执⾏结束了。</p>
+<p> 例⼦：输出1 到100 数字。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// while.php</span></span><br><span class="line"><span class="variable">$a</span> = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (<span class="variable">$a</span> &lt;= <span class="number">100</span>) &#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>.<span class="string">&quot;&lt;br /&gt;&quot;</span>;</span><br><span class="line"><span class="variable">$a</span> ++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="do-while"><a href="#do-while" class="headerlink" title="do while"></a>do while</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// do-while.php</span></span><br><span class="line"><span class="variable">$a</span> = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>.<span class="string">&quot;&lt;br /&gt;&quot;</span>;</span><br><span class="line"><span class="variable">$a</span> ++;</span><br><span class="line">&#125;<span class="keyword">while</span> (<span class="variable">$a</span> &lt;= <span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="for"><a href="#for" class="headerlink" title="for"></a>for</h3><p><strong>语法格式。</strong></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(;;)&#123;<span class="comment">//计数器;判断条件;自增或自减</span></span><br><span class="line"><span class="comment">//循环体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>例⼦：输出1 到1000 数字。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// for.php</span></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$i</span>=<span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="number">1000</span> ; <span class="variable">$i</span>++) &#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$i</span>.<span class="string">&quot;&lt;br /&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="特殊流程"><a href="#特殊流程" class="headerlink" title="特殊流程"></a>特殊流程</h1><h3 id="break"><a href="#break" class="headerlink" title="break"></a>break</h3><p>break ⽤于switch，for，while，do…while，foreach 等的中断。后⾯可以接上⼀个 数字来表⽰跳出⼏层循环。默认不加就是跳出当前循环语句。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// break.php</span></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$i</span>=<span class="number">1</span>; <span class="variable">$i</span> &lt;= <span class="number">100</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$i</span> % <span class="number">17</span> == <span class="number">0</span>) &#123;</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$i</span>.<span class="string">&quot;&lt;br /&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;PHP is DONE!&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h3><p>continue 只能⽤在循环语句，轮空本次循环，并不是结束整个循环语句。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// continue.php</span></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$i</span>=<span class="number">1</span>; <span class="variable">$i</span> &lt;= <span class="number">100</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$i</span> % <span class="number">17</span> == <span class="number">0</span>) &#123;</span><br><span class="line"><span class="keyword">continue</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$i</span>.<span class="string">&quot;&lt;br /&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;PHP is DONE!&quot;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="exit"><a href="#exit" class="headerlink" title="exit"></a>exit</h3><p>exit 表⽰结束当前整个PHP 脚本的执⾏。同die() 语句。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// exit.php</span></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$i</span>=<span class="number">1</span>; <span class="variable">$i</span> &lt;= <span class="number">100</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$i</span> % <span class="number">17</span> == <span class="number">0</span>) &#123;</span><br><span class="line"><span class="comment">// exit;</span></span><br><span class="line"><span class="comment">// exit(&quot;PHP is OVER&quot;);</span></span><br><span class="line"><span class="comment">// die(&quot;PHP is OVER&quot;);</span></span><br><span class="line"><span class="keyword">die</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$i</span>.<span class="string">&quot;&lt;br /&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;PHP is DONE!&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://hbimg.huaban.com/535ad5a8d0a1762fc1cbe65f6e7748d373a8c57d7bfa-l5D3wU_fw658" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://hbimg.huaban.com/535ad5a8d0a1762fc1cbe65f6e7748d373a8c57d7bfa-l5D3wU_fw658" title="头像" alt="头像"></a><div class="post-copyright__author_name">cgjil</div><div class="post-copyright__author_desc">你好啊，出发吧</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="http://example.com/2022/10/10/%E7%BC%96%E7%A8%8B/php/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('http://example.com/2022/10/10/%E7%BC%96%E7%A8%8B/php/')">php基础</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="http://example.com/2022/10/10/%E7%BC%96%E7%A8%8B/php/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=undefined&amp;url=http://example.com/2022/10/10/%E7%BC%96%E7%A8%8B/php/&amp;pic=undefined" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="rm.copyPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">cgjil</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__category-list"><a class="post-meta__box__categoryes" href="/categories/%E7%BC%96%E7%A8%8B/"><span class="categoryes-punctuation"> <i class="anzhiyufont anzhiyu-icon-inbox"></i></span>编程<span class="categoryesPageCount">2</span></a></div><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/%E8%AF%AD%E8%A8%80/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>语言<span class="tagsPageCount">2</span></a></div></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2022/09/02/%E7%BC%96%E7%A8%8B/%E5%89%8D%E7%AB%AF/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/image/24.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">前端</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/2022/09/02/%E7%BC%96%E7%A8%8B/%E5%89%8D%E7%AB%AF/" title="前端"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/image/24.webp" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2022-09-02</div><div class="title">前端</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://hbimg.huaban.com/535ad5a8d0a1762fc1cbe65f6e7748d373a8c57d7bfa-l5D3wU_fw658" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" ait="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">This is my blog! **</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">出发吧，诗和远方</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about"><h1 class="author-info__name">cgjil</h1><div class="author-info__desc">你好啊，出发吧</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/anzhiyu-c" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/372204786" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9D%E8%AF%86PHP"><span class="toc-number">1.</span> <span class="toc-text">初识PHP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP-%E8%AF%AD%E2%BE%94%E6%A0%87%E8%AE%B0"><span class="toc-number">1.1.</span> <span class="toc-text">PHP 语⾔标记</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">基础语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E5%88%86%E9%9A%94%E7%AC%A6"><span class="toc-number">2.0.1.</span> <span class="toc-text">指令分隔符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">2.0.2.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E2%BD%A9%E5%AD%97%E7%AC%A6"><span class="toc-number">2.0.3.</span> <span class="toc-text">空⽩字符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">3.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E6%A6%82%E8%BF%B0"><span class="toc-number">3.0.1.</span> <span class="toc-text">变量概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E5%91%BD%E5%90%8D"><span class="toc-number">3.0.2.</span> <span class="toc-text">变量命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">3.0.3.</span> <span class="toc-text">变量声明与初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E9%87%8A%E6%94%BE"><span class="toc-number">3.0.4.</span> <span class="toc-text">变量释放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E5%8F%98%E5%8F%98%E9%87%8F"><span class="toc-number">3.0.5.</span> <span class="toc-text">可变变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.0.6.</span> <span class="toc-text">变量类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bool"><span class="toc-number">3.0.7.</span> <span class="toc-text">bool</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#int"><span class="toc-number">3.0.8.</span> <span class="toc-text">int</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#float"><span class="toc-number">3.0.9.</span> <span class="toc-text">float</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string"><span class="toc-number">3.0.10.</span> <span class="toc-text">string</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E9%87%8F"><span class="toc-number">4.</span> <span class="toc-text">常量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E2%BD%A4"><span class="toc-number">4.0.1.</span> <span class="toc-text">定义和使⽤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E5%AE%9A%E4%B9%89%E5%B8%B8%E9%87%8F"><span class="toc-number">4.0.2.</span> <span class="toc-text">预定义常量</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.</span> <span class="toc-text">运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.0.1.</span> <span class="toc-text">算术运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.0.2.</span> <span class="toc-text">字符串运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.0.3.</span> <span class="toc-text">赋值运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%BD%90%E8%BE%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.0.4.</span> <span class="toc-text">⽐较运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.0.5.</span> <span class="toc-text">逻辑运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.0.6.</span> <span class="toc-text">其他运算符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-number">6.</span> <span class="toc-text">PHP 流程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E6%89%A7%E2%BE%8F"><span class="toc-number">6.0.1.</span> <span class="toc-text">顺序执⾏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E2%BD%80%E6%89%A7%E2%BE%8F"><span class="toc-number">6.0.2.</span> <span class="toc-text">分⽀执⾏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#if-%E8%AF%AD%E5%8F%A5"><span class="toc-number">6.0.3.</span> <span class="toc-text">if 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#switch-%E8%AF%AD%E5%8F%A5"><span class="toc-number">6.0.4.</span> <span class="toc-text">switch 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E6%9D%A1%E4%BB%B6"><span class="toc-number">6.0.5.</span> <span class="toc-text">判断条件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E6%89%A7%E2%BE%8F"><span class="toc-number">7.</span> <span class="toc-text">循环执⾏</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#while"><span class="toc-number">7.0.1.</span> <span class="toc-text">while</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#do-while"><span class="toc-number">7.0.2.</span> <span class="toc-text">do while</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for"><span class="toc-number">7.0.3.</span> <span class="toc-text">for</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E6%B5%81%E7%A8%8B"><span class="toc-number">8.</span> <span class="toc-text">特殊流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#break"><span class="toc-number">8.0.1.</span> <span class="toc-text">break</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#continue"><span class="toc-number">8.0.2.</span> <span class="toc-text">continue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exit"><span class="toc-number">8.0.3.</span> <span class="toc-text">exit</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/10/10/%E7%BC%96%E7%A8%8B/php/" title="php基础"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/image/1.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="php基础"/></a><div class="content"><a class="title" href="/2022/10/10/%E7%BC%96%E7%A8%8B/php/" title="php基础">php基础</a><time datetime="2022-10-10T01:37:00.000Z" title="发表于 2022-10-10 09:37:00">2022-10-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/02/%E7%BC%96%E7%A8%8B/%E5%89%8D%E7%AB%AF/" title="前端"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/image/24.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="前端"/></a><div class="content"><a class="title" href="/2022/09/02/%E7%BC%96%E7%A8%8B/%E5%89%8D%E7%AB%AF/" title="前端">前端</a><time datetime="2022-09-02T01:32:37.000Z" title="发表于 2022-09-02 09:32:37">2022-09-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/16/Linux/http%E5%8D%8F%E8%AE%AE/" title="http协议"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/image/13.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="http协议"/></a><div class="content"><a class="title" href="/2022/08/16/Linux/http%E5%8D%8F%E8%AE%AE/" title="http协议">http协议</a><time datetime="2022-08-16T04:34:54.000Z" title="发表于 2022-08-16 12:34:54">2022-08-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/11/Linux/%E6%BA%90%E5%AE%89%E8%A3%85/" title="源安装"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/image/18.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="源安装"/></a><div class="content"><a class="title" href="/2022/08/11/Linux/%E6%BA%90%E5%AE%89%E8%A3%85/" title="源安装">源安装</a><time datetime="2022-08-11T14:38:41.000Z" title="发表于 2022-08-11 22:38:41">2022-08-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/04/Linux/Linux%E5%91%BD%E4%BB%A4/" title="Linux命令"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/image/24.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux命令"/></a><div class="content"><a class="title" href="/2022/08/04/Linux/Linux%E5%91%BD%E4%BB%A4/" title="Linux命令">Linux命令</a><time datetime="2022-08-04T14:25:42.000Z" title="发表于 2022-08-04 22:25:42">2022-08-04</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By cgjil</div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">3</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Linux/" style="font-size: 0.88rem;">Linux<sup>3</sup></a><a href="/tags/Windows/" style="font-size: 0.88rem;">Windows<sup>4</sup></a><a href="/tags/%E8%AF%AD%E8%A8%80/" style="font-size: 0.88rem;">语言<sup>2</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random"></meting-js></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="is-center" id="loading-database"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-pulse-icon"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.20/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.4/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2021 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2020 By 安知鱼 V1.6.6",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 cgjil 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const initWaline = () => {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://pinglun-ixrqfq3ea-xingloveyues-projects.vercel.app/',
+      pageview: true,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: true,
+    }, null))
+  }
+
+  const loadWaline = async () => {
+    if (typeof Waline === 'object') initWaline()
+    else {
+      await getCSS('https://cdn.cbd.int/@waline/client@2.15.5/dist/waline.css')
+      await getScript('https://cdn.cbd.int/@waline/client@2.15.5/dist/waline.js')
+      initWaline()
+    }
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>window.addEventListener('load', () => {
+  const changeContent = content => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = async () => {
+    try {
+      const res = await fetch('https://pinglun-ixrqfq3ea-xingloveyues-projects.vercel.app/api/comment?type=recent&count=6', { method: 'GET' })
+      const result = await res.json()
+      const walineArray = result.data.map(e => {
+        return {
+          'content': changeContent(e.comment),
+          'avatar': e.avatar,
+          'nick': e.nick,
+          'url': e.url + '#' + e.objectId,
+          'date': e.time || e.insertedAt
+        }
+      })
+      saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), 10/(60*24))
+      generateHtml(walineArray)
+    } catch (err) {
+      console.error(err)
+      const $dom = document.querySelector('#card-newest-comments .aside-list')
+      $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+    }
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('waline-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script>var visitorMail = "visitor@anheyu.com";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="500" mobile="false" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="true"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
