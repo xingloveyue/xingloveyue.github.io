@@ -1,0 +1,808 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>渗透测试方法论 | cgjil</title><meta name="author" content="cgjil"><meta name="copyright" content="cgjil"><meta name="referrer" content="no-referrer"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="渗透测试方法论"><meta name="application-name" content="渗透测试方法论"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="渗透测试方法论"><meta property="og:url" content="http://example.com/2022/11/03/%E6%BC%8F%E6%B4%9E/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html"><meta property="og:site_name" content="cgjil"><meta property="og:description" content="1.渗透测试种类1.1渗透测试种类攻击与防御，攻击典型代表就是黑客入侵，非法的和渗透测试，合法的等工作。防御的典型代表等级保护、安全基线检查与加固、安全设备等。  渗透测试（penetration testing, pentest）是模拟黑客攻击，实施安全评估（即审计）的具体手段。方法论是在制定、实"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="http://example.com/image/8.webp"><meta property="article:author" content="cgjil"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="http://example.com/image/8.webp"><meta name="description" content="1.渗透测试种类1.1渗透测试种类攻击与防御，攻击典型代表就是黑客入侵，非法的和渗透测试，合法的等工作。防御的典型代表等级保护、安全基线检查与加固、安全设备等。  渗透测试（penetration testing, pentest）是模拟黑客攻击，实施安全评估（即审计）的具体手段。方法论是在制定、实"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="http://example.com/2022/11/03/%E6%BC%8F%E6%B4%9E/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/"><link rel="preconnect" href="//npm.elemecdn.com"/><link rel="preconnect" href="//npm.onmicrosoft.cn"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.20/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: {"enable":true,"ck":"3G1uPFWikrp3ggY5","LingQueMonitorID":"3G1uPFWikrp3ggY5"},
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":["🏃 脚踏实地行动派"]},
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    simplehomepage: false,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: cgjil","link":"链接: ","source":"来源: cgjil","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'cgjil',
+  title: '渗透测试方法论',
+  postAI: '',
+  pageFillDescription: '1.渗透测试种类, 1.1渗透测试种类, 1.2 黑盒测试, 1.3  白盒测试, 1.4脆弱性评估, 2.安全测试方法论, 2.1  , 2.1.1  OWASP TOP 10, **2.2 , **2.3 CVE, 2.4 安全公告, 2.4.1  , 2.4.2  Apache 漏洞公告, 2.4.3  Oracle 漏洞公告, 2.5 其他方法论, 3.渗透测试流程, 3.1  通用渗透测试框架, 3.1.1  范围界定, 3.1.2  信息搜集, 3.1.3  目标识别, 3.1.4  服务枚举, 3.1.5  漏洞映射, 3.1.6  社会工程学, 3.1.7  漏洞利用, 3.1.8  权限提升, 3.1.9  访问维护, 3.1.10 文档报告, 3.2渗透测试执行标准, 3.2.1 七个阶段, 3.2.2  主要特点优势, 3.3 简化渗透测试流程, 3.4黑客攻击流程, 3.4.1  黑客攻击一般过程, 3.4.2 c2攻击过程渗透测试种类渗透测试种类攻击与防御攻击典型代表就是黑客入侵非法的和渗透测试合法的等工作防御的典型代表等级保护安全基线检查与加固安全设备等渗透测试是模拟黑客攻击实施安全评估即审计的具体手段方法论是在制定实施信息安全审计方案时需要遵循的规则惯例和过程人们在评估网络应用系统或三者组合的安全状况时不断摸索各种务实的理念和成熟的做法并总结了一套理论渗透测试方法论关键词安全弱点安全风险安全漏洞千里之堤毁于蚁穴渗透测试与红队不同红队是攻击队伍想尽一切办法入侵目标系统渗透测试是尽可能的披露目标系统的安全弱点风险漏洞等任何安全问题都不要放过渗透测试的目的为安全加固漏洞修复做准备黑盒测试在进行黑盒测试时渗透测试工程师在不清楚被测单位的内部技术构造的情况下从外部评估网络基础设施网络应用系统目标资产等的安全性在渗透测试的各个阶段黑盒测试借助真实世界的黑客技术暴露出目标的安全问题甚至可以揭露尚未被他人利用的安全弱点工程师应该能理解安全弱点并将安全弱点进行分类按照风险等级高中低对其排序通常来说风险级别取决于相关弱点可能形成危害的大小有经验的工程师应能够确定漏洞利用的所有攻击手法和模式当测试人员完成黑盒测试的所有工作之后他们会把与测试对象安全状况有关的必要信息进行整理并使用业务的语言描述这些被识别出来的风险继而将之汇总为书面报告黑盒测试的市场报价通常会高于白盒测试关键点不清楚内部单位技术构造模拟黑客攻击的过程漏洞评级高危中危低危信息级别白盒测试白盒测试的审计员可以获取被测单位的各种内部资料甚至不公开资料所以渗透测试人员的视野更为开阔若以白盒测试的方法评估安全漏洞测试人员可以以最小的工作量达到最高的评估精确度白盒测试从被测系统环境自身出发全面消除内部安全问题从而增加了从单位外部渗透系统的难度黑盒测试起不到这样的作用白盒测试所需要的步骤数目与黑盒测试不相上下另外若能将白盒测试与常规的研发生命周期相结合就可以在入侵者发现甚至利用安全弱点之前尽可能最早地消除全部安全隐患这使得白盒测试的时间成本以及发现解决安全弱点的技术门槛都全面低于黑盒测试关键点获取被测单位全部资料或者有限资料代码审计可以与应用的研发生命周期相结合脆弱性评估脆弱性评估通过分析企业资产面临安全威胁的情况和程度评估内部和外部的的安全控制的安全性这种技术上的信息系统评估不仅揭露现有防范措施里存在的风险而且要提出多重备选的补救策略并将这些策略进行比较内部的脆弱性评估可保证内部系统的安全性而外部的脆弱性评估则是验证边界防护的有效性无论进行内部脆弱性评估还是进行外部脆弱性评估评估人员都会采用各种攻击模式来严格测试网络资产的安全性从而验证信息系统处理安全威胁的能力进而确定应对措施的有效性不同类型的脆弱性评估需要的测试流程测试工具和自动化测试技术也不相同这可以通过一体化的安全弱点管控平台来实现现在的安全弱点管理平台带有可自动更新的漏洞数据库能够测试不同类型的网络设备而且不会影响配置管理和变更管理的完整性脆弱性评估和渗透测试两者最大的区别就是渗透测试不仅要识别目标的弱点它还涉及在目标系统上进行漏洞利用权限提升和访问维护换句话说脆弱性评估虽然可以充分发现系统里的缺陷但是不会考虑去衡量这些缺陷对系统造成的危害另外相比脆弱性评估渗透测试更倾向于入侵会刻意使用各种技术手段利用安全漏洞所以渗透测试可能对生产环境带来实际的破坏性影响而脆弱性评估以非入侵的方式定性定量得识别已知安全弱点关键点黑盒测试安全弱点风险漏洞的发现漏洞利用后渗透脆弱性评估安全弱点风险漏洞的发现脆弱性评估的方法包括漏洞扫描手工挖掘安全测试方法论开放式应用程序安全项目安全测试指南项目说明失效的访问控制访问控制强制实施策略使用户无法在其预期权限之外进行操作失败的访问控制通常会导致未经授权的信息泄露修改或销毁所有数据或在用户权限之外执行业务功能加密机制失效首先要确认对传输中数据和存储数据都有哪些保护需求例如密码信用卡号医疗记录个人信息和商业秘密需要额外保护尤其是在这些数据属于隐私保护法如欧盟或法规条例如金融数据保护标准适用范围的情况下注入在以下情况下应用程序易受攻击应用程序不会验证过滤或清洗用户提供的数据动态查询或无上下文感知转义的非参数化调用直接在解释器中使用恶意数据在对象关系映射搜索参数中用于提取额外的敏感记录恶意数据被直接使用或连接或命令包含动态查询命令或存储过程中的结构和恶意数据不安全设计不安全设计是一个广泛的类别代表不同的弱点表示为缺少或无效的控制设计不安全设计不是所有其他前个风险类别的来源不安全设计和不安全的实现之间存在差异我们区分设计缺陷和实现缺陷是有原因的它们有不同的根本原因和补救措施安全设计仍然可能存在实现缺陷从而导致可能被利用的漏洞一个不安全设计不能通过一个完美的实现来修复因为根据定义所需的安全控制从未被创建来抵御特定的攻击导致不安全设计的因素之一是开发的软件或系统中缺乏固有的业务风险分析因此无法确定需要何种级别的安全设计安全配置错误您的应用程序可能受到攻击如果应用程序是应用程序栈的任何部分缺少适当的安全加固或者云服务的权限配置错误应用程序启用或安装了不必要的功能例如不必要的端口服务网页帐户或权限默认帐户和密码仍然可用且没有更改错误处理机制向用户纰漏堆栈信息或其他大量错误信息对于升级的系统最新的安全特性被禁用或未安全配置应用程序服务器应用程序框架如库文件数据库等没有进行安全配置服务器不发送安全标头或指令或未被设定安全参数您的应用软件已过期或易受攻击参见脆弱和过时的组件自带缺陷和过时的组件如果满足下面的某个条件那么您的应用就易受此类攻击如果您不知道所有使用的组件版本信息包括服务端和客户端这包括了直接使用的组件或间接依赖的组件如果软件易受攻击不再支持或者过时这包括系统服务器应用程序服务器数据库管理系统应用程序和所有的组件运行环境和库如果您没有定期做漏洞扫描和订阅使用组件的安全公告如果您不基于风险及时修复或升级底层平台框架和依赖库很可能发生这种情况根据变更控制每月或每季度进行升级这使得组织在这段时间内会受到已修复但未修补的漏洞的威胁如果软件工程师没有对更新的升级的或打过补丁的组件进行兼容性测试如果您没有对组件进行安全配置参见安全配置错误身份识别和身份验证错误允许像是攻击者已经拥有有效用户名称和密码列表的撞库自动化攻击允许暴力或其他自动化攻击允许预设脆弱常见的密码像是或使用脆弱或无效的认证资讯回复或忘记密码的流程如不安全的知识相关问答使用明码被加密的或使用较脆弱杂凑法的密码参考敏感性资料泄漏不具有或是无效的多因素认证于中泄漏会话如重写成功登入后没有轮换会话没有正确的注销会话用户的会话或认证主要是单一登入没有在登出时或一段时间没活动时被适当的注销软件和数据完整性故障软件和数据完整性故障与无法防止违反完整性的代码和基础设施有关这方面的一个例子是应用程序依赖于不受信任的源存储库和内容分发网络的插件库或模块不安全的管道可能会带来未经授权的访问恶意代码或系统安全风险最后许多应用程序现在包括自动更新功能其中更新包在没有进行充足完整性验证的情况下被下载并应用于以前受信任的应用程序攻击者可能会上传自己的更新包以便在所有安装上分发和运行另一个例子是对象或数据被编码或序列化为攻击者可以看到和修改的结构很容易受到不安全的反序列化的影响安全日志和监控故障年版中该类别是为了帮助检测升级和应对活跃的违规行为如果不进行日志记录和监测就无法发现违规行为任何时候都会发生日志记录检测监视和主动响应不足的情况需要审计的事件例如登录失败的登录和高价值交易但未记录警告和错误未生成日志或日志记录不充分或日志消息不清晰应用程序和的日志未进行安全可疑活动的监控日志只存储在本地适当的警报阈值和响应升级过程不到位或无效渗透测试和动态应用安全测试工具例如的扫描没有触发警报应用无法实时或接近实时地检测升级或或对主动攻击发出警报如果让用户或攻击者看到日志和警报事件您就容易受到信息泄露的攻击查看失效的访问控制服务端请求伪造一旦应用在获取远程资源时没有验证用户提供的就会出现缺陷它允许攻击者强制应用程序发送一个精心构建的请求到一个意外目的地即使是在有防火墙或其他类型的网络访问控制列表保护的情况下随着现代应用为终端用户提供便利的功能获取成为一种常见的场景因此安全攻击事件也在不断增加此外由于云服务和架构的复杂性的严重性也越来越高失效的身份认证通常通过错误使用应用程序的身份认证和会话管理功能攻击者能够破译密码密钥或会话令牌或者利用其它开发缺陷来暂时性或永久性冒充其他用户的身份固定会话攻击表单爆破敏感数据泄露许多应用程序和都无法正确保护敏感数据例如财务数据医疗数据和数据攻击者可以通过窃取或修改未加密的数据来实施信用卡诈骗身份盗窃或其他犯罪行为未加密的敏感数据容易受到破坏因此我们需要对敏感数据加密这些数据包括传输过程中的数据存储的数据以及浏览器的交互数据网站后台管理员账密明文传输外部实体许多较早的或配置错误的处理器评估了文件中的外部实体引用攻击者可以利用外部实体窃取使用文件处理器的内部文件和共享文件监听内部扫描端口执行远程代码和实施拒绝服务攻击失效的访问控制未对通过身份验证的用户实施恰当的访问控制攻击者可以利用这些缺陷访问未经授权的功能或数据例如访问其他用户的帐户查看敏感文件修改其他用户的数据更改访问权限等安全配置错误安全配置错误是最常见的安全问题这通常是由于不安全的默认配置不完整的临时配置开源云存储错误的标头配置以及包含敏感信息的详细错误信息所造成的因此我们不仅需要对所有的操作系统框架库和应用程序进行安全配置而且必须及时修补和升级它们跨站脚本当应用程序的新网页中包含不受信任的未经恰当验证或转义的数据时或者使用可以创建或的浏览器更新现有的网页时就会出现缺陷让攻击者能够在受害者的浏览器中执行脚本并劫持用户会话破坏网站或将用户重定向到恶意站点不安全的反序列化不安全的反序列化会导致远程代码执行即使反序列化缺陷不会导致远程代码执行攻击者也可以利用它们来执行攻击包括重播攻击注入攻击和特权升级攻击使用含有已知漏洞的组件组件例如库框架和其他软件模块拥有和应用程序相同的权限如果应用程序中含有已知漏洞的组件被攻击者利用可能会造成严重的数据丢失或服务器接管同时使用含有已知漏洞的组件的应用程序和可能会破坏应用程序防御造成各种攻击并产生严重影响后门不足的日志记录和监控不足的日志记录和监控以及事件响应缺失或无效的集成使攻击者能够进一步攻击系统保持持续性或转向更多系统以及篡改提取或销毁数据大多数缺陷研究显示缺陷被检测出的时间超过天且通常通过外部检测方检测而不是通过内部流程或监控检测通用缺陷列表漏洞类别的编号通用漏洞与披露具体某一个漏洞的编号国外官网安全公告微软安全公告漏洞公告漏洞公告其他方法论应用安全联合威胁分类渗透测试流程通用渗透测试框架从技术管理的角度来看遵循正规的测试框架对安全测试极为重要通用渗透测试框架涵盖了典型的审计测试工作和渗透测试工作会涉及到的各个阶段无论是进行白盒测试还是黑盒测试选择和使用测试步骤都是测试人员的责任在测试开始前测试人员需要根据目标系统的实际环境和已掌握的相关目标系统的情况再指定最佳的测试策略相关阶段如下范围界定信息搜集目标识别服务枚举漏洞映射社会工程学漏洞利用权限提升访问维护文档报告范围界定在开始技术性安全评估之间务必要观察研究目标环境的被测范围同时还要了解这个范围牵扯多少个单位是单个单位还是多个单位会参与到安全评估的工作中来在范围界定阶段需要考虑的典型因素如下确定目标取得授权应当采取何种测试方法有哪些在测试过程中需要满足的条件哪些因素可能会限制测试执行的过程需要多久才能完成测试此次测试应当达成什么样的任务目标是否是复测信息搜集外围信息收集非接触式信息收集在划定了测试范围之后就需要进入信息收集阶段在这个阶段渗透人员需要使用各种公开资源尽可能地获取测试目标的相关信息他们搜集信息的互联网渠道主要有论坛公告板新闻组媒体文章博客社交网络其他商业或非商业性的网站此外他们也可以借助各种搜索引擎中获取相关数据如谷歌雅虎必应百度等收集的信息主要包括服务器路由关系数据库电子邮件地址电话号码个人信息用户账户收集的信息越多渗透测试成功的概率越高目标识别这个阶段的主要任务是识别目标的网络状态操作系统和网络架构该阶段工作旨在完整地展现目标网络里各种联网设备或技术的完整关系以帮助测试人员在接下来的工作里枚举目标网络的各种服务扫哪些设备在线如何去访问服务枚举这一阶段会根据前面各个阶段的成果进一步找出目标系统中所有开放的端口一旦找到了所有开放的端口就可以通过这些端口来列出目标系统上运行的服务主机上开放的端口都有相应的服务程序对这些信息进行深度分析之后可进一步发掘目标网络基础设施中可能存在的漏洞扫端口开放的端口运行的服务技术架构容器开发语言以及框架前后端分离漏洞映射可以根据已经发现的开放端口和服务程序查找分析目标系统中存在的漏洞如果能够采用自动和手动这两种不同的测试方法结合起来审计人员对目标系统的认知就会更为清晰透彻并能够仔细地检查任何已知和未知的漏洞扫漏洞漏洞挖掘手工工具测试社会工程学如果目标网络没有直接的入口欺骗的艺术将起到抛砖引玉的重要作用对目标组织中的人员进行定向攻击很有可能帮助我们找到渗透目标系统的入口例如诱使用户运行安装存在后门的恶意程序就可能为审计人员的渗透工作形成突破社会工程学渗透分为多种不同实现形式伪装成网络管理员通过电话要求用户提供自己的账户信息发送钓鱼邮件来劫持用户的银行账户诱使某人出现在某个地点在社会工程学中达成同一既定目标的实现方式应有尽有需要注意的是在对目标实施欺骗以达成渗透目标之前多数情况下需要长时间研究目标人员的心理另外在开展这个阶段的工作之前您需要研究国内的法律是否有关于社会工程学的相关条款漏洞利用在仔细检查和发现目标系统中的漏洞之后就可以使用已有的漏洞利用程序对目标系统进行渗透审计人员可以把客户端漏洞利用程序和社会工程学进行结合进而控制目标系统这个阶段的主要任务是访问目标系统这个流程可以分为三步涉及攻击前攻击攻击后的相关行动权限提升获取目标系统的控制权是渗透成功的标识接下来工程师就可以根据其所拥有的访问权限在被测系统中自由发挥审计人员也可以使用适用于目标系统的本地漏洞来提升自己的权限只要他们能够在目标系统上运行提权漏洞利用程序就可以获得主机的超级用户权限或者系统级权限工程师还可以以该主机为跳板进一步攻击局域网络根据之前渗透范围的界定授权审计人员接下来会开展的攻击可能是受限制的也可能是不受限制然后他们很有可能个以各种方式获得与控制系统有关的更多信息具体的说他们可能是用嗅探手段截获网络数据包破解各种服务的密码在局域网络中使用网络欺骗手段所以说提升权限的最终目的是获得目标系统的最高访问权限访问维护多数情况下审计人员需要在一段时间内维护他们对目标系统的访问权限例如在演示越权访问目标系统的时候安装后门将节省重新渗透目标系统所耗费的大量时间这种情况下访问维护将节约获取目标系统访问权限所需要的时间花费和资源审计人员可以通过一些秘密的通信隧道在既定时间内维持对目标的访问权限这些隧道往往基于特定协议代理或者点对点方法的后门程序这种对系统的访问方法可以清楚地展示入侵人员在目标系统实施攻击时隐藏行踪的具体方法埋藏后门隧道技术文档报告在渗透测试的最后一个环节里审计人员要记录报告并现场演示那些已经识别验证和利用了的安全漏洞在被测单位的管理和技术团队会检查渗透时使用的方法并会根据这些文档修补所有存在的安全漏洞所以从道德角度来看文档报告的工作十分重要为了帮助管理人员和技术人员共同理解分析当前基础架构中的薄弱环节可能需要给不同的部门撰写不同措辞的书面报告渗透测试执行标准渗透测试执行标准的先驱都是渗透测试行业的精英渗透测试执行标准包含两个部分方法论技术指南这个标准有渗透测试个阶段的标准组成可以在任意环境中进行富有成果的渗透测试七个阶段事前互动情报搜集威胁建模漏洞分析漏洞利用深度利用书面报告主要特点优势主要特点优势它是非常全面的渗透测试框架涵盖了渗透测试的技术方面和其他重要方面如范围蔓延报告以及渗透测试人员保护自身的方法它介绍了多数测试任务的具体方法可指导您准确测试目标系统的安全状态它汇聚了多名日行一渗的渗透测试专家的丰富经验它包含了最常用的以及很罕见的相关技术它浅显易懂您可根据测试工作的需要对相应测试步骤进行调整简化渗透测试流程黑客攻击流程黑客攻击一般过程攻击过程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-03 20:22:57',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://hbimg.huaban.com/535ad5a8d0a1762fc1cbe65f6e7748d373a8c57d7bfa-l5D3wU_fw658"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">cgjil</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Linux/" style="font-size: 1.05rem;">Linux<sup>3</sup></a><a href="/tags/Windows/" style="font-size: 1.05rem;">Windows<sup>4</sup></a><a href="/tags/%E8%84%9A%E6%9C%AC/" style="font-size: 1.05rem;">脚本<sup>1</sup></a><a href="/tags/%E8%AF%AD%E8%A8%80/" style="font-size: 1.05rem;">语言<sup>6</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">5</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/10/"><span class="card-archive-list-date">十月 2022</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">5</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/09/"><span class="card-archive-list-date">九月 2022</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/08/"><span class="card-archive-list-date">八月 2022</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/07/"><span class="card-archive-list-date">七月 2022</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/06/"><span class="card-archive-list-date">六月 2022</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item on" id="consoleCommentBarrage" onclick="anzhiyu.switchCommentBarrage()" title="热评开关"><a class="commentBarrage"><i class="anzhiyufont anzhiyu-icon-message"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%BC%8F%E6%B4%9E/" itemprop="url">漏洞</a></span><span class="article-meta tags"></span></div></div><h1 class="post-title" itemprop="name headline">渗透测试方法论</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2022-11-03T12:22:57.000Z" title="发表于 2022-11-03 20:22:57">2022-11-03</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2022-11-03T12:22:57.000Z" title="更新于 2022-11-03 20:22:57">2022-11-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">7.1k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>21分钟</span></span><span class="post-meta-separator"></span><span id="" data-flag-title="渗透测试方法论"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span class="waline-pageview-count" data-path="/2022/11/03/%E6%BC%8F%E6%B4%9E/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/" title="访问量"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator"></span><span class="post-meta-commentcount"><i class="anzhiyufont anzhiyu-icon-comments post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2022/11/03/%E6%BC%8F%E6%B4%9E/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/#post-comment"><span class="waline-comment-count" data-path="/2022/11/03/%E6%BC%8F%E6%B4%9E/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></a></span></div></div></div><article class="post-content" id="article-container" itemscope itemtype="http://example.com/2022/11/03/%E6%BC%8F%E6%B4%9E/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/"><header><a class="post-meta-categories" href="/categories/%E6%BC%8F%E6%B4%9E/" itemprop="url">漏洞</a><h1 id="CrawlerTitle" itemprop="name headline">渗透测试方法论</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">cgjil</span><time itemprop="dateCreated datePublished" datetime="2022-11-03T12:22:57.000Z" title="发表于 2022-11-03 20:22:57">2022-11-03</time><time itemprop="dateCreated datePublished" datetime="2022-11-03T12:22:57.000Z" title="更新于 2022-11-03 20:22:57">2022-11-03</time></header><h1 id="1-渗透测试种类"><a href="#1-渗透测试种类" class="headerlink" title="1.渗透测试种类"></a>1.渗透测试种类</h1><h4 id="1-1渗透测试种类"><a href="#1-1渗透测试种类" class="headerlink" title="1.1渗透测试种类"></a>1.1渗透测试种类</h4><pre><code>攻击与防御，攻击典型代表就是黑客入侵，非法的和渗透测试，合法的等工作。防御的典型代表等级保护、安全基线检查与加固、安全设备等。
+
+渗透测试（penetration testing, pentest）是模拟黑客攻击，实施安全评估（即审计）的具体手段。方法论是在制定、实施信息安全审计方案时，需要遵循的规则、惯例和过程。人们在评估网络、应用、系统或三者组合的安全状况时，不断摸索各种务实的理念和成熟的做法，并总结了一套理论 -渗透测试方法论。
+</code></pre>
+<p>关键词：</p>
+<ul>
+<li><p>安全弱点</p>
+</li>
+<li><p>安全风险</p>
+</li>
+<li><p>安全漏洞</p>
+</li>
+</ul>
+<p>“千里之堤，毁于蚁穴”。</p>
+<p>渗透测试与红队（Red Team）不同：</p>
+<ul>
+<li><p>红队是攻击队伍，想尽一切办法入侵目标系统。</p>
+</li>
+<li><p>渗透测试是尽可能的披露目标系统的安全弱点、风险、漏洞等，任何安全问题都不要放过。</p>
+</li>
+<li><p>渗透测试的目的为安全加固，漏洞修复做准备。</p>
+</li>
+</ul>
+<h4 id="1-2-黑盒测试"><a href="#1-2-黑盒测试" class="headerlink" title="1.2 黑盒测试"></a>1.2 黑盒测试</h4><pre><code>在进行黑盒测试时，渗透测试工程师在不清楚被测单位的内部技术构造的情况下，从外部评估网络基础设施（网络，应用，系统，目标资产等）的安全性。在渗透测试的各个阶段，黑盒测试借助真实世界的黑客技术，暴露出目标的安全问题，甚至可以揭露尚未被他人利用的安全弱点。工程师应该能理解安全弱点，并将安全弱点进行分类按照风险等级（高、中、低）对其排序。通常来说，风险级别取决于相关弱点可能形成危害的大小。有经验的工程师应能够确定漏洞利用的所有攻击手法和模式。当测试人员完成黑盒测试的所有工作之后，他们会把与测试对象安全状况有关的必要信息进行整理，并使用业务的语言描述这些被识别出来的风险，继而将之汇总为书面报告。黑盒测试的市场报价通常会高于白盒测试。
+
+关键点：
+</code></pre>
+<ul>
+<li><p>不清楚内部单位技术构造</p>
+</li>
+<li><p>模拟黑客攻击的过程</p>
+</li>
+<li><p>漏洞评级</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">高危</span><br><span class="line">中危</span><br><span class="line">低危</span><br><span class="line"></span><br><span class="line">信息级别</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-白盒测试"><a href="#1-3-白盒测试" class="headerlink" title="1.3  白盒测试"></a><strong>1.3</strong>  白盒测试</h4><pre><code>    白盒测试的审计员可以获取被测单位的各种内部资料甚至不公开资料，所以渗透测试人员的视野更为开阔。若以白盒测试的方法评估安全漏洞，测试人员可以以最小的工作量达到最高的评估精确度。白盒测试从被测系统环境自身出发，全面消除内部安全问题。从而增加了从单位外部渗透系统的难度。黑盒测试起不到这样的作用。白盒测试所需要的步骤数目与黑盒测试不相上下。另外，若能将白盒测试与常规的研发生命周期相结合，就可以在入侵者发现甚至利用安全弱点之前，尽可能最早地消除全部安全隐患。这使得白盒测试的时间、成本，以及发现、解决安全弱点的技术门槛都全面低于黑盒测试。
+
+关键点：
+</code></pre>
+<ul>
+<li><p>获取被测单位全部资料或者有限资料</p>
+</li>
+<li><p>代码审计</p>
+</li>
+<li><p>可以与应用的研发生命周期相结合（Security Development Lifecycle，SDL）</p>
+</li>
+</ul>
+<h4 id="1-4脆弱性评估"><a href="#1-4脆弱性评估" class="headerlink" title="1.4脆弱性评估"></a><strong>1.4</strong>脆弱性评估</h4><pre><code>    脆弱性评估通过分析企业资产面临安全威胁的情况和程度，评估内部和外部的的安全控制的安全性。这种技术上的信息系统评估，不仅揭露现有防范措施里存在的风险，而且要提出多重备选的补救策略，并将这些策略进行比较。内部的脆弱性评估可保证内部系统的安全性，而外部的脆弱性评估则是验证边界防护（perimeter defenses）的有效性。无论进行内部脆弱性评估还是进行外部脆弱性评估，评估人员都会采用各种攻击模式来严格测试网络资产的安全性，从而验证信息系统处理安全威胁的能力，进而确定应对措施的有效性。不同类型的脆弱性评估需要的测试流程、测试工具和自动化测试技术也不相同。这可以通过一体化的安全弱点管控（vulnerability management）平台来实现。现在的安全弱点管理平台带有可自动更新的漏洞数据库，能够测试不同类型的网络设备，而且不会影响配置管理和变更管理的完整性。
+
+    脆弱性评估和渗透测试两者最大的区别就是：渗透测试不仅要识别目标的弱点，它还涉及在目标系统上进行漏洞利用、权限提升和访问维护。换句话说，脆弱性评估虽然可以充分发现系统里的缺陷，但是不会考虑去衡量这些缺陷对系统造成的危害。另外，相比脆弱性评估，渗透测试更倾向于入侵，会刻意使用各种技术手段利用安全漏洞；所以渗透测试可能对生产环境带来实际的破坏性影响。而脆弱性评估以非入侵的方式，定性、定量得识别已知安全弱点。
+
+    关键点：
+</code></pre>
+<ul>
+<li><p>黑盒测试 &#x3D; 安全弱点、风险、漏洞的发现 + 漏洞利用 + 后渗透</p>
+</li>
+<li><p>脆弱性评估 &#x3D; 安全弱点、风险、漏洞的发现</p>
+</li>
+<li><p>脆弱性评估的方法，包括漏洞扫描，手工挖掘。</p>
+</li>
+</ul>
+<h1 id="2-安全测试方法论"><a href="#2-安全测试方法论" class="headerlink" title="2.安全测试方法论"></a>2.安全测试方法论</h1><h4 id="2-1-OWASP"><a href="#2-1-OWASP" class="headerlink" title="2.1  OWASP"></a><strong>2.1</strong>  <a target="_blank" rel="noopener" href="https://owasp.org/"><strong>OWASP</strong></a></h4><p>开放式Web 应用程序安全项目（Open Web Application Security Project，OWASP）。</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://owasp.org/www-project-web-security-testing-guide/">Web 安全测试指南</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://owasp.org/www-project-webgoat/">OWASP WebGoat</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://owasp.org/www-project-top-ten/">OWASP TOP 10</a></p>
+</li>
+</ul>
+<h6 id="2-1-1-OWASP-TOP-10"><a href="#2-1-1-OWASP-TOP-10" class="headerlink" title="2.1.1  OWASP TOP 10"></a><strong>2.1.1</strong>  <strong>OWASP</strong> <strong>TOP</strong> <strong>10</strong></h6><p><code>**OWASP TOP 10 - 2021**</code></p>
+<table>
+<thead>
+<tr>
+<th align="center">项目</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">A01：2021  - 失效的访问控制  Broken Access  Control</td>
+<td align="center">访问控制强制实施策略，使用户无法在其预期权限之外进行操作。失败的访问控制通常会导致未经授权的信息泄露、修改或销毁所有数据、或在用户权限之外执行业务功能。</td>
+</tr>
+<tr>
+<td align="center">A02：2021 - 加密机制失效Cryptographic  Failures</td>
+<td align="center">首先要确认：对传输中数据和存储数据都有哪些保护需求。例如，密码、信用卡号、医疗记录、个人信息和商业秘密需要额外保护，尤其是在这些数据属于隐私保护法(如：欧盟GDPR) 或法规条例(如：金融数据保护标准PCI DSS)适用范围的情况下。</td>
+</tr>
+<tr>
+<td align="center">A03：2021 - 注入  Injection</td>
+<td align="center">在以下情况下,应用程序易受攻击:  * 应用程序不会验证、过滤或清洗用户提供的数据。  * 动态查询或无上下文感知转义的非参数化调用直接在解释器中使用。  * 恶意数据在对象关系映射（ORM）搜索参数中用于提取额外的敏感记录。  * 恶意数据被直接使用或连接。SQL 或命令包含动态查询、命令或存储过程中的结构和恶意数据。</td>
+</tr>
+<tr>
+<td align="center">A04：2021 -  不安全设计  Insecure Design</td>
+<td align="center">不安全设计是一个广泛的类别，代表不同的弱点。表示为“缺少或无效的控制设计”。不安全设计不是所有其他前10个风险类别的来源。不安全设计和不安全的实现之间存在差异。我们区分设计缺陷和实现缺陷是有原因的，它们有不同的根本原因和补救措施。安全设计仍然可能存在实现缺陷，从而导致可能被利用的漏洞。一个不安全设计不能通过一个完美的实现来修复，因为根据定义，所需的安全控制从未被创建来抵御特定的攻击。导致不安全设计的因素之一是开发的软件或系统中缺乏固有的业务风险分析，因此无法确定需要何种级别的安全设计。</td>
+</tr>
+<tr>
+<td align="center">A05：2021 - 安全配置错误  Security  Misconfiguration</td>
+<td align="center">您的应用程序可能受到攻击,如果应用程序是：  * 应用程序栈的任何部分缺少适当的安全加固，或者云服务的权限配置错误。  * 应用程序启用或安装了不必要的功能(例如：不必要的端口、服务、网页、帐户或权限)。* 默认帐户和密码仍然可用且没有更改。  * 错误处理机制向用户纰漏堆栈信息或其他大量错误信息。* 对于升级的系统，最新的安全特性被禁用或未安全配置。  * 应用程序服务器、应用程序框架(如:Struts、Spring、ASP.NET)、库文件、数据库等没有进行安全配置。* 服务器不发送安全标头或指令，或未被设定安全参数。  * 您的应用软件已过期或易受攻击(参见“A6:2021-脆弱和过时的组件”)。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>A06：2021 -  自带缺陷和过时的组件Vulnerable and  Outdated  Components</th>
+<th>如果满足下面的某个条件，那么您的应用就易受此类攻击：  * 如果您不知道所有使用的组件版本信息(包括：服务端和客户端)。这包括了直接使用的组件或间接依赖的组件。* 如果软件易受攻击，不再支持或者过时。这包括：系统、Web服务器、应用程序服务器、数据库管理系统(DBMS)、应用程序、API 和所有的组件、运行环境和库。  * 如果您没有定期做漏洞扫描和订阅使用组件的安全公告。  * 如果您不基于风险及时修复或升级底层平台、框架和依赖库。很可能发生这种情况：根据变更控制，每月或每季度进行升级，这使得组织在这段时间内会受到已修复但未修补的漏洞的威胁。  * 如果软件工程师没有对更新的、升级的或打过补丁的组件进行兼容性测试。* 如果您没有对组件进行安全配置(参见“A05:2021–安全配置错误”)。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A07：2021 - 身份识别和身份验证错误Identification and  Authentication  Failures</td>
+<td>* 允许像是攻击者已经拥有有效用户名称和密码列表的撞库自动化攻击。* 允许暴力或其他自动化攻击。  * 允许预设、脆弱、常见的密码,像是Password1 或admin&#x2F;admin。  * 使用脆弱或无效的认证资讯回复或忘记密码的流程，如不安全的”知识相关问答”。  * 使用明码、被加密的或使用较脆弱杂凑法的密码(参考A3: 2017-敏感性资料泄漏)。<a target="_blank" rel="noopener" href="https://github.com/OWASP/Top10/issues/553">(TODO)</a>  *  不具有或是无效的多因素认证。  *  于URL 中泄漏会话（session）ID(如URL 重写)。* 成功登入后没有轮换会话（session）ID。  * 没 有 正 确 的 注 销 会 话 (session) ID。 用 户 的 会 话 （session） 或 认 证 tokens（主 要 是 单 一 登 入（SSO）token） 没有在登出时或一段时间没活动时被适当的注销。</td>
+</tr>
+<tr>
+<td>A08：2021 - 软件和数据完整性故障Software and Data  Integrity  Failures</td>
+<td>软件和数据完整性故障与无法防止违反完整性的代码和基础设施有关。这方面的一个例子是，应用程序依赖于不受信任的源、存储库和内容分发网络(CDN)的插件、库或模块。不安全的CI&#x2F;CD 管道可能会带来未经授权的访问、恶意代码或系统安全风险。最后，许多应用程序现在包括自动更新功能。其中，更新包在没有进行充足完整性验证的情况下被下载，并应用于以前受信任的应用程序。攻击者可能会上传自己的更新包，以便在所有安装上分发和运  行。另一个例子是，对象或数据被编码或序列化为攻击者可以看到和修改的结构，很容易受到不安全的反序列化的影响。</td>
+</tr>
+<tr>
+<td>A09：2021 - 安全日志和监控故障Security Logging and  Monitoring  Failures</td>
+<td>2021 年版OWASP Top 10 中，该类别是为了帮助检测、升级和应对活跃的违规行为。如果不进行日志记录和监测，就无法发现违规行为。任何时候都会发生日志记录、检测、监视和主动响应不足的情况：  * 需要审计的事件，例如：登录、失败的登录和高价值交易，但未记录。* 警告和错误未生成日志或日志记录不充分或日志消息不清晰。  * 应用程序和API 的日志未进行安全可疑活动的监控。* 日志只存储在本地。  * 适当的警报阈值和响应升级过程不到位或无效。  * 渗透测试和动态应用安全测试（DAST）工具(例如：<a target="_blank" rel="noopener" href="https://www.zaproxy.org/">OWASP ZAP</a>)的扫描没有触发警报。* 应用无法实时或接近实时地检测、升级或或对主动攻击发出警报。  * 如果让用户或攻击者看到日志和警报事件，您就容易受到信息泄露的攻击(查看“A01:2021-失效的访问控制”)。</td>
+</tr>
+<tr>
+<td>A10：2021  - 服务端请求伪造  Server-Side Request  Forgery</td>
+<td>一旦Web 应用在获取远程资源时没有验证用户提供的URL，就会出现SSRF 缺陷。它允许攻击者强制应用程序发送一个精心构建的请求到一个意外目的地，即使是在有防火墙、VPN 或其他类型的网络访问控制列表（ACL）保护的情况下。随着现代Web 应用为终端用户提供便利的功能，获取URL 成为一种常见的场景。因此，SSRF 安全攻击事件也在不断增加。此外，由于云服务和架构的复杂性，SSRF 的严重性也越来越高。</td>
+</tr>
+</tbody></table>
+<p><code>**OWASP TOP 10 - 2017**</code></p>
+<table>
+<thead>
+<tr>
+<th>A2:2017- 失效的身份认证</th>
+<th>通常，通过错误使用应用程序的身份认证和会话管理功能，攻击者能够破译密码、密钥或会话令牌，或者利用其它开发缺陷来暂时性或永久性冒充其他用户的身份。  （固定会话攻击）（Web 表单爆破）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A3:2017- 敏感数据泄露</td>
+<td>许多Web 应用程序和API 都无法正确保护敏感数据，例如：财务数据、医疗数据和PII 数据。攻击者可以通过窃取或修改未加密的数据来实施信用卡诈骗、身份盗窃或其他犯罪行为。未加密的敏感数据容易受到破坏，因此，我们需要对敏感数据加密，这些数据包括：传输过程中的数据、存储的数据以及浏览器的交互数据。  （网站后台管理员账密明文传输 - HTTP）（phpinfo()）</td>
+</tr>
+<tr>
+<td>A4:2017-  XML 外部实体 （XXE）</td>
+<td>许多较早的或配置错误的XML 处理器评估了XML 文件中的外部实体引用。攻击者可以利用外部实体窃取使用URI 文件处理器的内部文件和共享文件、监听内部扫描端口、执行远程代码和实施拒绝服务攻击。  （XXE）</td>
+</tr>
+<tr>
+<td>A5:2017- 失效的访问控制</td>
+<td>未对通过身份验证的用户实施恰当的访问控制。攻击者可以利用这些缺陷访问未经授权的功能或数据，例如：访问其他用户的帐户、查看敏感文件、修改其他用户的数据、更改访问权限等。  （DVWA）</td>
+</tr>
+<tr>
+<td>A6:2017- 安全配置错误</td>
+<td>安全配置错误是最常见的安全问题，这通常是由于不安全的默认配置、不完整的临时配置、开源云存储、错误的HTTP标头配置以及包含敏感信息的详细错误信息所造成的。因此，我们不仅需要对所有的操作系统、框架、库和应用程序进行安全配置，而且必须及时修补和升级它们。</td>
+</tr>
+<tr>
+<td>A7:2017- 跨站脚本 （XSS）</td>
+<td>当应用程序的新网页中包含不受信任的、未经恰当验证或转义的数据时，或者使用可以创建HTML 或 JavaScript 的浏览器API 更新现有的网页时，就会出现XSS 缺陷。XSS 让攻击者能够在受害者的浏览器中执行脚本，并劫持用户会话、破坏网站或将用户重定向到恶意站点。</td>
+</tr>
+<tr>
+<td>A8:2017-  不安全的反序列化</td>
+<td>不安全的反序列化会导致远程代码执行。即使反序列化缺陷不会导致远程代码执行，攻击者也可以利用它们来执行攻击，包括：重播攻击、注入攻击和特权升级攻击。  （Weblogic）</td>
+</tr>
+<tr>
+<td>A9:2017- 使用含有已知漏洞的组件</td>
+<td>组件（例如：库、框架和其他软件模块）拥有和应用程序相同的权限。如果应用程序中含有已知漏洞的组件被攻击者利用，可能会造成严重的数据丢失或服务器接管。同时，使用含有已知漏洞的组件的应用程序和API 可能会破坏应用程序防御、造成各种攻击并产生严重影响。  （phpStudy 2016 后门）</td>
+</tr>
+<tr>
+<td>A10:2017- 不足的日志记录和监控</td>
+<td>不足的日志记录和监控，以及事件响应缺失或无效的集成，使攻击者能够进一步攻击系统、保持持续性或转向更多系统，以及篡改、提取或销毁数据。大多数缺陷研究显示，缺陷被检测出的时间超过200 天，且通常通过外部检测方检测，而不是通过内部流程或监控检测。</td>
+</tr>
+</tbody></table>
+<h4 id="2-2-CWE"><a href="#2-2-CWE" class="headerlink" title="**2.2 CWE"></a>**2.2 <a target="_blank" rel="noopener" href="https://cwe.mitre.org/"><strong>CWE</strong></a></h4><p>通用缺陷列表（Common Weakness Enumeration，CWE）漏洞类别的编号：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://cwe.mitre.org/data/definitions/79.html">CWE-79: Improper Neutralization of Input During Web Page Generation (‘Cross-site Scripting’)</a></li>
+<li><a target="_blank" rel="noopener" href="http://cwe.mitre.org/data/definitions/89.html">CWE-89: Improper Neutralization of Special Elements used in an SQL Command (‘SQL Injection’)</a></li>
+</ul>
+<h4 id="2-3-CVE"><a href="#2-3-CVE" class="headerlink" title="**2.3 CVE"></a>**2.3 <strong>CVE</strong></h4><p>通用漏洞与披露（Common Vulnerabilities and Exposures，CVE）</p>
+<p>具体某一个漏洞的编号：</p>
+<p><a target="_blank" rel="noopener" href="http://cve.mitre.org/">国外官网</a></p>
+<h4 id="2-4-安全公告"><a href="#2-4-安全公告" class="headerlink" title="2.4 安全公告"></a><strong>2.4</strong> 安全公告</h4><h6 id="2-4-1-微软安全公告"><a href="#2-4-1-微软安全公告" class="headerlink" title="2.4.1  微软安全公告"></a><strong>2.4.1</strong>  <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/security-updates/"><strong>微软安全公告</strong></a></h6><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/security-updates/securitybulletins/2017/ms17-010">MS17-010</a></p>
+<h6 id="2-4-2-Apache-漏洞公告"><a href="#2-4-2-Apache-漏洞公告" class="headerlink" title="2.4.2  Apache 漏洞公告"></a><strong>2.4.2</strong>  <strong>Apache</strong> <strong>漏洞公告</strong></h6><ul>
+<li><p><a target="_blank" rel="noopener" href="https://httpd.apache.org/security_report.html">Apache HTTPD</a> </p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://tomcat.apache.org/security.html">Apache Tomcat</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/WW/Security+Bulletins">Apache Strtus2</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://logging.apache.org/log4j/2.x/security.html">Apache log4j</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://shiro.apache.org/security-reports.html">Apache Shiro</a></p>
+</li>
+</ul>
+<h6 id="2-4-3-Oracle-漏洞公告"><a href="#2-4-3-Oracle-漏洞公告" class="headerlink" title="2.4.3  Oracle 漏洞公告"></a><strong>2.4.3</strong>  <strong>Oracle</strong> <strong>漏洞公告</strong></h6><p><a target="_blank" rel="noopener" href="https://bugs.mysql.com/">MySQL</a></p>
+<h4 id="2-5-其他方法论"><a href="#2-5-其他方法论" class="headerlink" title="2.5 其他方法论"></a><strong>2.5</strong> 其他方法论</h4><p><a target="_blank" rel="noopener" href="http://projects.webappsec.org/">Web 应用安全联合威胁分类（Web Application Security Consortium Threat Classification，WASC-TC）</a></p>
+<h1 id="3-渗透测试流程"><a href="#3-渗透测试流程" class="headerlink" title="3.渗透测试流程"></a>3.渗透测试流程</h1><h4 id="3-1-通用渗透测试框架"><a href="#3-1-通用渗透测试框架" class="headerlink" title="3.1  通用渗透测试框架"></a><strong>3.1</strong>  通用渗透测试框架</h4><pre><code>    从技术管理的角度来看，遵循正规的测试框架对安全测试极为重要。通用渗透测试框架涵盖了典型的审计测试工作和渗透测试工作会涉及到的各个阶段。
+
+    无论是进行白盒测试还是黑盒测试，选择和使用测试步骤都是测试人员的责任。在测试开始前，测试人员需要根据目标系统的实际环境和已掌握的相关目标系统的情况，再指定最佳的测试策略。
+</code></pre>
+<p>相关阶段如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.	范围界定</span><br><span class="line">2.	信息搜集</span><br><span class="line">3.	目标识别</span><br><span class="line">4.	服务枚举</span><br><span class="line">5.	漏洞映射</span><br><span class="line">6.	社会工程学</span><br><span class="line">7.	漏洞利用</span><br><span class="line">8.	权限提升</span><br><span class="line">9.	访问维护</span><br><span class="line">10. 文档报告</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h6 id="3-1-1-范围界定"><a href="#3-1-1-范围界定" class="headerlink" title="3.1.1  范围界定"></a><strong>3.1.1</strong>  <strong>范围界定</strong></h6><p>在开始技术性安全评估之间，务必要观察、研究目标环境的被测范围。同时还要了解，这个范围牵扯多少个单位，是单个单位还是多个单位会参与到安全评估的工作中来，在范围界定阶段，需要考虑的典型因素如下：</p>
+<ul>
+<li><p>确定目标；</p>
+</li>
+<li><p>取得授权；</p>
+</li>
+<li><p>应当采取何种测试方法？</p>
+</li>
+<li><p>有哪些在测试过程中需要满足的条件？哪些因素可能会限制测试执行的过程？需要多久才能完成测试？</p>
+</li>
+<li><p>此次测试应当达成什么样的任务目标？</p>
+</li>
+<li><p>是否是复测？</p>
+</li>
+</ul>
+<h6 id="3-1-2-信息搜集"><a href="#3-1-2-信息搜集" class="headerlink" title="3.1.2  信息搜集"></a><strong>3.1.2</strong>  <strong>信息搜集</strong></h6><pre><code>    外围信息收集，非接触式信息收集。
+
+    在划定了测试范围之后，就需要进入信息收集阶段。在这个阶段，渗透人员需要使用各种公开资源尽可能地获取测试目标的相关信息。他们搜集信息的互联网渠道主要有：
+</code></pre>
+<ul>
+<li><p>论坛</p>
+</li>
+<li><p>公告板</p>
+</li>
+<li><p>新闻组</p>
+</li>
+<li><p>媒体文章</p>
+</li>
+<li><p>博客</p>
+</li>
+<li><p>社交网络</p>
+</li>
+<li><p>github</p>
+</li>
+<li><p>其他商业或非商业性的网站。</p>
+<pre><code>  此外，他们也可以借助各种搜索引擎中获取相关数据，如谷歌、雅虎、MSN 必应、百度等。收集的信息主要包括:
+</code></pre>
+</li>
+<li><p>DNS 服务器</p>
+</li>
+<li><p>路由关系</p>
+</li>
+<li><p>whois 数据库电子邮件地址电话号码</p>
+</li>
+<li><p>个人信息</p>
+</li>
+<li><p>用户账户</p>
+</li>
+</ul>
+<p>收集的信息越多，渗透测试成功的概率越高。</p>
+<h6 id="3-1-3-目标识别"><a href="#3-1-3-目标识别" class="headerlink" title="3.1.3  目标识别"></a><strong>3.1.3</strong>  <strong>目标识别</strong></h6><pre><code>    这个阶段的主要任务是识别目标的网络状态、操作系统和网络架构。该阶段工作旨在完整地展现目标网络里各种联网设备或技术的完整关系，以帮助测试人员在接下来的工作里枚举目标网络的各种服务。
+</code></pre>
+<ul>
+<li><p>扫IP； </p>
+</li>
+<li><p>哪些设备在线？</p>
+</li>
+<li><p>如何去访问？</p>
+</li>
+</ul>
+<h6 id="3-1-4-服务枚举"><a href="#3-1-4-服务枚举" class="headerlink" title="3.1.4  服务枚举"></a><strong>3.1.4</strong>  <strong>服务枚举</strong></h6><pre><code>    这一阶段会根据前面各个阶段的成果，进一步找出目标系统中所有开放的端口。一旦找到了所有开放的端口，就可以通过这些端口来列出目标系统上运行的服务。主机上开放的端口都有相应的服务程序，对这些信息进行深度分析之后，可进一步发掘目标网络基础设施中可能存在的漏洞。
+</code></pre>
+<ul>
+<li><p>扫端口；</p>
+</li>
+<li><p>开放的端口；</p>
+</li>
+<li><p>运行的服务。</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">技术架构</span><br><span class="line">Web  容器</span><br><span class="line">开发语言以及框架</span><br><span class="line">前后端分离</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h6 id="3-1-5-漏洞映射"><a href="#3-1-5-漏洞映射" class="headerlink" title="3.1.5  漏洞映射"></a><strong>3.1.5</strong>  <strong>漏洞映射</strong></h6><pre><code>    可以根据已经发现的开放端口和服务程序，查找、分析目标系统中存在的漏洞。如果能够采用自动和手动这两种不同的测试方法结合起来，审计人员对目标系统的认知就会更为清晰、透彻，并能够仔细地检查任何已知和未知的漏洞。
+</code></pre>
+<ul>
+<li><p>扫漏洞；</p>
+</li>
+<li><p>漏洞挖掘：手工 + 工具；FUZZ 测试。</p>
+</li>
+</ul>
+<h6 id="3-1-6-社会工程学"><a href="#3-1-6-社会工程学" class="headerlink" title="3.1.6  社会工程学"></a><strong>3.1.6</strong>  <strong>社会工程学</strong></h6><pre><code>    如果目标网络没有直接的入口，欺骗的艺术将起到抛砖引玉的重要作用。对目标组织中的人员进行定向攻击，很有可能帮助我们找到渗透目标系统的入口。例如，诱使用户运行安装存在后门的恶意程序，就可能为审计人员的渗透工作形成突破。社会工程学渗透分为多种不同实现形式。
+</code></pre>
+<ul>
+<li><p>伪装成网络管理员，通过电话要求用户提供自己的账户信息；</p>
+</li>
+<li><p>发送钓鱼邮件来劫持用户的银行账户；</p>
+</li>
+<li><p>诱使某人出现在某个地点。</p>
+<pre><code>  在社会工程学中，达成同一既定目标的实现方式应有尽有。需要注意的是，在对目标实施欺骗以达成渗透目标之前，多数情况下需要长时间研究目标人员的心理。另外，在开展这个阶段的工作之前，您需要研究国内的法律是否有关于社会工程学的相关条款。
+</code></pre>
+</li>
+</ul>
+<h6 id="3-1-7-漏洞利用"><a href="#3-1-7-漏洞利用" class="headerlink" title="3.1.7  漏洞利用"></a><strong>3.1.7</strong>  <strong>漏洞利用</strong></h6><pre><code>    在仔细检查和发现目标系统中的漏洞之后，就可以使用已有的漏洞利用程序对目标系统进行渗透。审计人员可以把客户端漏洞利用程序和社会工程学进行结合，进而控制目标系统。这个阶段的主要任务是访问目标系统。这个流程可以分为三步，涉及攻击前、攻击、攻击后的相关行动。
+</code></pre>
+<h6 id="3-1-8-权限提升"><a href="#3-1-8-权限提升" class="headerlink" title="3.1.8  权限提升"></a><strong>3.1.8</strong>  <strong>权限提升</strong></h6><pre><code>    获取目标系统的控制权是渗透成功的标识。接下来，工程师就可以根据其所拥有的访问权限，在被测系统中自由发挥。审计人员也可以使用适用于目标系统的本地漏洞来提升自己的权限。只要他们能够在目标系统上运行提权漏洞利用程序，就可以获得主机的超级用户权限或者系统级权限。工程师还可以以该主机为跳板，进一步攻击局域网络。根据之前渗透范围的界定（授权），审计人员接下来会开展的攻击可能是受限制的，也可能是不受限制。然后，他们很有可能个以各种方式获得与控制系统有关的更多信息。具体的说，他们可能是用嗅探手段截获网络数据包，破解各种服务的密码，在局域网络中使用网络欺骗手段。所以说，提升权限的最终目的是获得目标系统的最高访问权限。
+</code></pre>
+<h6 id="3-1-9-访问维护"><a href="#3-1-9-访问维护" class="headerlink" title="3.1.9  访问维护"></a><strong>3.1.9</strong>  <strong>访问维护</strong></h6><pre><code>    多数情况下，审计人员需要在一段时间内维护他们对目标系统的访问权限。例如，在演示越权访问目标系统的时候，安装后门将节省重新渗透目标系统所耗费的大量时间。这种情况下，访问维护将节约获取目标系统访问权限所需要的时间、花费和资源。审计人员可以通过一些秘密的通信隧道，在既定时间内维持对目标的访问权限。这些隧道往往基于特定协议、代理或者点对点方法的后门程序。这种对系统的访问方法可以清楚地展示，入侵人员在目标系统实施攻击时隐藏行踪的具体方法。
+</code></pre>
+<ul>
+<li><p>埋藏后门；</p>
+</li>
+<li><p>隧道技术。</p>
+</li>
+</ul>
+<h6 id="3-1-10-文档报告"><a href="#3-1-10-文档报告" class="headerlink" title="3.1.10 文档报告"></a>3.1.10 文档报告</h6><pre><code>    在渗透测试的最后一个环节里，审计人员要记录、报告并现场演示那些已经识别、验证和利用了的安全漏洞。在被测单位的管理和技术团队会检查渗透时使用的方法，并会根据这些文档修补所有存在的安全漏洞。所以从道德角度来看，文档报告的工作十分重要。为了帮助管理人员和技术人员共同理解、分析当前IT 基础架构中的薄弱环节，可能需要给不同的部门撰写不同措辞的书面报告。
+</code></pre>
+<h4 id="3-2渗透测试执行标准"><a href="#3-2渗透测试执行标准" class="headerlink" title="3.2渗透测试执行标准"></a>3.2渗透测试执行标准</h4><p><a target="_blank" rel="noopener" href="http://www.pentest-standard.org/index.php/Main_Page">渗透测试执行标准（Penetration Testing Execution Standard，PTES）</a>的先驱都是渗透测试行业的精英。</p>
+<p>渗透测试执行标准包含两个部分：PTES 方法论；PTES 技术指南。</p>
+<p>这个标准有渗透测试7 个阶段的标准组成，可以在任意环境中进行富有成果的渗透测试。</p>
+<h6 id="3-2-1-七个阶段"><a href="#3-2-1-七个阶段" class="headerlink" title="3.2.1 七个阶段"></a><strong>3.2.1</strong> <strong>七个阶段</strong></h6><ul>
+<li><p>事前互动</p>
+</li>
+<li><p>情报搜集</p>
+</li>
+<li><p>威胁建模</p>
+</li>
+<li><p>漏洞分析</p>
+</li>
+<li><p>漏洞利用</p>
+</li>
+<li><p>深度利用</p>
+</li>
+<li><p>书面报告</p>
+</li>
+</ul>
+<h6 id="3-2-2-主要特点优势"><a href="#3-2-2-主要特点优势" class="headerlink" title="3.2.2  主要特点优势"></a><strong>3.2.2</strong>  <strong>主要特点优势</strong></h6><p><strong>1.1.1</strong>  <strong>主要特点优势</strong></p>
+<ul>
+<li><p>它是非常全面的渗透测试框架，涵盖了渗透测试的技术方面和其他重要方面，如范围蔓延（scope creep）、报告，以及渗透测试人员保护自身的方法。</p>
+</li>
+<li><p>它介绍了多数测试任务的具体方法，可指导您准确测试目标系统的安全状态。它汇聚了多名日行一“渗”的渗透测试专家的丰富经验。</p>
+</li>
+<li><p>它包含了最常用的以及很罕见的相关技术。</p>
+</li>
+<li><p>它浅显易懂，您可根据测试工作的需要对相应测试步骤进行调整。</p>
+</li>
+</ul>
+<h4 id="3-3-简化渗透测试流程"><a href="#3-3-简化渗透测试流程" class="headerlink" title="3.3 简化渗透测试流程"></a><strong>3.3</strong> 简化渗透测试流程</h4><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/73b2480f4096454d94d5afd4b1726fbe.png" alt="在这里插入图片描述"></p>
+<h4 id="3-4黑客攻击流程"><a href="#3-4黑客攻击流程" class="headerlink" title="3.4黑客攻击流程"></a>3.4黑客攻击流程</h4><h6 id="3-4-1-黑客攻击一般过程"><a href="#3-4-1-黑客攻击一般过程" class="headerlink" title="3.4.1  黑客攻击一般过程"></a><strong>3.4.1</strong>  <strong>黑客攻击一般过程</strong></h6><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/0dd33d220c0b4f6fa3ff6548e3519805.png" alt="在这里插入图片描述"></p>
+<h6 id="3-4-2-c2攻击过程"><a href="#3-4-2-c2攻击过程" class="headerlink" title="3.4.2 c2攻击过程"></a>3.4.2 c2攻击过程</h6><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/4bd043a0470f470ea8775d54b21f7888.png" alt="在这里插入图片描述"></p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://hbimg.huaban.com/535ad5a8d0a1762fc1cbe65f6e7748d373a8c57d7bfa-l5D3wU_fw658" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://hbimg.huaban.com/535ad5a8d0a1762fc1cbe65f6e7748d373a8c57d7bfa-l5D3wU_fw658" title="头像" alt="头像"></a><div class="post-copyright__author_name">cgjil</div><div class="post-copyright__author_desc">你好啊，出发吧</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="http://example.com/2022/11/03/%E6%BC%8F%E6%B4%9E/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('http://example.com/2022/11/03/%E6%BC%8F%E6%B4%9E/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/')">渗透测试方法论</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="http://example.com/2022/11/03/%E6%BC%8F%E6%B4%9E/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=undefined&amp;url=http://example.com/2022/11/03/%E6%BC%8F%E6%B4%9E/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/&amp;pic=undefined" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="rm.copyPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">cgjil</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__category-list"><a class="post-meta__box__categoryes" href="/categories/%E6%BC%8F%E6%B4%9E/"><span class="categoryes-punctuation"> <i class="anzhiyufont anzhiyu-icon-inbox"></i></span>漏洞<span class="categoryesPageCount">4</span></a></div><div class="post-meta__box__tag-list"></div></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/11/03/%E7%BC%96%E7%A8%8B/exp/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/image/24.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">exp</div></div></a></div><div class="next-post pull-right"><a href="/2022/11/05/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/image/9.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">sql注入</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://hbimg.huaban.com/535ad5a8d0a1762fc1cbe65f6e7748d373a8c57d7bfa-l5D3wU_fw658" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" ait="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">This is my blog! **</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">出发吧，诗和远方</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about"><h1 class="author-info__name">cgjil</h1><div class="author-info__desc">你好啊，出发吧</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/anzhiyu-c" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/372204786" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%A7%8D%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">1.渗透测试种类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%A7%8D%E7%B1%BB"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">1.1渗透测试种类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">1.2 黑盒测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">1.3  白盒测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4%E8%84%86%E5%BC%B1%E6%80%A7%E8%AF%84%E4%BC%B0"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">1.4脆弱性评估</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA"><span class="toc-number">2.</span> <span class="toc-text">2.安全测试方法论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-OWASP"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">2.1  OWASP</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#2-1-1-OWASP-TOP-10"><span class="toc-number">2.0.0.1.0.1.</span> <span class="toc-text">2.1.1  OWASP TOP 10</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-CWE"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">**2.2 CWE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-CVE"><span class="toc-number">2.0.0.3.</span> <span class="toc-text">**2.3 CVE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A"><span class="toc-number">2.0.0.4.</span> <span class="toc-text">2.4 安全公告</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#2-4-1-%E5%BE%AE%E8%BD%AF%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A"><span class="toc-number">2.0.0.4.0.1.</span> <span class="toc-text">2.4.1  微软安全公告</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-4-2-Apache-%E6%BC%8F%E6%B4%9E%E5%85%AC%E5%91%8A"><span class="toc-number">2.0.0.4.0.2.</span> <span class="toc-text">2.4.2  Apache 漏洞公告</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-4-3-Oracle-%E6%BC%8F%E6%B4%9E%E5%85%AC%E5%91%8A"><span class="toc-number">2.0.0.4.0.3.</span> <span class="toc-text">2.4.3  Oracle 漏洞公告</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95%E8%AE%BA"><span class="toc-number">2.0.0.5.</span> <span class="toc-text">2.5 其他方法论</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">3.渗透测试流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E9%80%9A%E7%94%A8%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">3.1  通用渗透测试框架</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#3-1-1-%E8%8C%83%E5%9B%B4%E7%95%8C%E5%AE%9A"><span class="toc-number">3.0.0.1.0.1.</span> <span class="toc-text">3.1.1  范围界定</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-1-2-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">3.0.0.1.0.2.</span> <span class="toc-text">3.1.2  信息搜集</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-1-3-%E7%9B%AE%E6%A0%87%E8%AF%86%E5%88%AB"><span class="toc-number">3.0.0.1.0.3.</span> <span class="toc-text">3.1.3  目标识别</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-1-4-%E6%9C%8D%E5%8A%A1%E6%9E%9A%E4%B8%BE"><span class="toc-number">3.0.0.1.0.4.</span> <span class="toc-text">3.1.4  服务枚举</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-1-5-%E6%BC%8F%E6%B4%9E%E6%98%A0%E5%B0%84"><span class="toc-number">3.0.0.1.0.5.</span> <span class="toc-text">3.1.5  漏洞映射</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-1-6-%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6"><span class="toc-number">3.0.0.1.0.6.</span> <span class="toc-text">3.1.6  社会工程学</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-1-7-%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">3.0.0.1.0.7.</span> <span class="toc-text">3.1.7  漏洞利用</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-1-8-%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87"><span class="toc-number">3.0.0.1.0.8.</span> <span class="toc-text">3.1.8  权限提升</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-1-9-%E8%AE%BF%E9%97%AE%E7%BB%B4%E6%8A%A4"><span class="toc-number">3.0.0.1.0.9.</span> <span class="toc-text">3.1.9  访问维护</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-1-10-%E6%96%87%E6%A1%A3%E6%8A%A5%E5%91%8A"><span class="toc-number">3.0.0.1.0.10.</span> <span class="toc-text">3.1.10 文档报告</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%89%A7%E8%A1%8C%E6%A0%87%E5%87%86"><span class="toc-number">3.0.0.2.</span> <span class="toc-text">3.2渗透测试执行标准</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#3-2-1-%E4%B8%83%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="toc-number">3.0.0.2.0.1.</span> <span class="toc-text">3.2.1 七个阶段</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-2-2-%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9%E4%BC%98%E5%8A%BF"><span class="toc-number">3.0.0.2.0.2.</span> <span class="toc-text">3.2.2  主要特点优势</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-%E7%AE%80%E5%8C%96%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B"><span class="toc-number">3.0.0.3.</span> <span class="toc-text">3.3 简化渗透测试流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4%E9%BB%91%E5%AE%A2%E6%94%BB%E5%87%BB%E6%B5%81%E7%A8%8B"><span class="toc-number">3.0.0.4.</span> <span class="toc-text">3.4黑客攻击流程</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#3-4-1-%E9%BB%91%E5%AE%A2%E6%94%BB%E5%87%BB%E4%B8%80%E8%88%AC%E8%BF%87%E7%A8%8B"><span class="toc-number">3.0.0.4.0.1.</span> <span class="toc-text">3.4.1  黑客攻击一般过程</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-4-2-c2%E6%94%BB%E5%87%BB%E8%BF%87%E7%A8%8B"><span class="toc-number">3.0.0.4.0.2.</span> <span class="toc-text">3.4.2 c2攻击过程</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/11/10/%E6%BC%8F%E6%B4%9E/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88csrf%EF%BC%89/" title="跨站请求伪造（csrf）"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/image/23.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="跨站请求伪造（csrf）"/></a><div class="content"><a class="title" href="/2022/11/10/%E6%BC%8F%E6%B4%9E/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%88csrf%EF%BC%89/" title="跨站请求伪造（csrf）">跨站请求伪造（csrf）</a><time datetime="2022-11-10T12:52:38.000Z" title="发表于 2022-11-10 20:52:38">2022-11-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/08/%E6%BC%8F%E6%B4%9E/xss/" title="xss"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/image/17.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="xss"/></a><div class="content"><a class="title" href="/2022/11/08/%E6%BC%8F%E6%B4%9E/xss/" title="xss">xss</a><time datetime="2022-11-08T12:47:54.000Z" title="发表于 2022-11-08 20:47:54">2022-11-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/05/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5/" title="sql注入"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/image/9.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="sql注入"/></a><div class="content"><a class="title" href="/2022/11/05/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5/" title="sql注入">sql注入</a><time datetime="2022-11-05T12:44:03.000Z" title="发表于 2022-11-05 20:44:03">2022-11-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/03/%E6%BC%8F%E6%B4%9E/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/" title="渗透测试方法论"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/image/8.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="渗透测试方法论"/></a><div class="content"><a class="title" href="/2022/11/03/%E6%BC%8F%E6%B4%9E/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/" title="渗透测试方法论">渗透测试方法论</a><time datetime="2022-11-03T12:22:57.000Z" title="发表于 2022-11-03 20:22:57">2022-11-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/03/%E7%BC%96%E7%A8%8B/exp/" title="exp"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/image/24.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="exp"/></a><div class="content"><a class="title" href="/2022/11/03/%E7%BC%96%E7%A8%8B/exp/" title="exp">exp</a><time datetime="2022-11-03T12:09:45.000Z" title="发表于 2022-11-03 20:09:45">2022-11-03</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By cgjil</div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">4</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Linux/" style="font-size: 0.88rem;">Linux<sup>3</sup></a><a href="/tags/Windows/" style="font-size: 0.88rem;">Windows<sup>4</sup></a><a href="/tags/%E8%84%9A%E6%9C%AC/" style="font-size: 0.88rem;">脚本<sup>1</sup></a><a href="/tags/%E8%AF%AD%E8%A8%80/" style="font-size: 0.88rem;">语言<sup>6</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random"></meting-js></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="is-center" id="loading-database"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-pulse-icon"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.20/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.4/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2021 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2020 By 安知鱼 V1.6.6",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 cgjil 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const initWaline = () => {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://pinglun-ixrqfq3ea-xingloveyues-projects.vercel.app/',
+      pageview: true,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: true,
+    }, null))
+  }
+
+  const loadWaline = async () => {
+    if (typeof Waline === 'object') initWaline()
+    else {
+      await getCSS('https://cdn.cbd.int/@waline/client@2.15.5/dist/waline.css')
+      await getScript('https://cdn.cbd.int/@waline/client@2.15.5/dist/waline.js')
+      initWaline()
+    }
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>window.addEventListener('load', () => {
+  const changeContent = content => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = async () => {
+    try {
+      const res = await fetch('https://pinglun-ixrqfq3ea-xingloveyues-projects.vercel.app/api/comment?type=recent&count=6', { method: 'GET' })
+      const result = await res.json()
+      const walineArray = result.data.map(e => {
+        return {
+          'content': changeContent(e.comment),
+          'avatar': e.avatar,
+          'nick': e.nick,
+          'url': e.url + '#' + e.objectId,
+          'date': e.time || e.insertedAt
+        }
+      })
+      saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), 10/(60*24))
+      generateHtml(walineArray)
+    } catch (err) {
+      console.error(err)
+      const $dom = document.querySelector('#card-newest-comments .aside-list')
+      $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+    }
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('waline-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script>var visitorMail = "visitor@anheyu.com";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="500" mobile="false" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="true"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
